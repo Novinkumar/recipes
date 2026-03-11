@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View detailed recipe instructions, ingredients, nutrition facts, and reviews on RecipeHub.">
+    <title>Recipe Detail — RecipeHub</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍳</text></svg>">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header-container">
+            <a href="../index.html" class="logo" aria-label="RecipeHub Home">
+                <span class="logo-icon">🍳</span>
+                <span class="logo-text">RecipeHub</span>
+            </a>
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <ul class="desktop-nav-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="recipes.html" class="active">Recipes</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="meal-planner.html">Meal Planner</a></li>
+                    <li><a href="search.html">Search</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobile-overlay" aria-hidden="true"></div>
+    <nav class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
+        <div class="mobile-menu-header">
+            <span class="logo-icon">🍳</span>
+            <span class="logo-text">RecipeHub</span>
+            <button class="mobile-menu-close" id="mobile-close" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="../index.html"><span class="menu-icon">🏠</span> Home</a></li>
+            <li><a href="recipes.html" class="active"><span class="menu-icon">📖</span> Recipes</a></li>
+            <li><a href="categories.html"><span class="menu-icon">📂</span> Categories</a></li>
+            <li><a href="favorites.html"><span class="menu-icon">❤️</span> Favorites</a></li>
+            <li><a href="meal-planner.html"><span class="menu-icon">📅</span> Meal Planner</a></li>
+            <li><a href="shopping-list.html"><span class="menu-icon">🛒</span> Shopping List</a></li>
+            <li><a href="search.html"><span class="menu-icon">🔍</span> Search</a></li>
+            <li><a href="submit-recipe.html"><span class="menu-icon">✍️</span> Submit Recipe</a></li>
+            <li><a href="profile.html"><span class="menu-icon">👤</span> Profile</a></li>
+            <li><a href="about.html"><span class="menu-icon">ℹ️</span> About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- Dynamic Recipe Detail Container -->
+        <div id="recipe-detail-container">
+
+            <!-- Loading Skeleton (shown before JS renders) -->
+            <div class="recipe-detail-hero" style="margin-top: var(--header-height);">
+                <div class="skeleton skeleton-image" style="width:100%;height:300px;border-radius:0;"></div>
+            </div>
+            <div class="container" style="padding-top: var(--space-lg);">
+                <div class="recipe-detail-content">
+                    <div class="skeleton skeleton-text" style="width:30%;"></div>
+                    <div class="skeleton skeleton-text-lg" style="width:80%;"></div>
+                    <div class="skeleton skeleton-text" style="width:100%;"></div>
+                    <div class="skeleton skeleton-text" style="width:90%;"></div>
+                    <div class="skeleton skeleton-text" style="width:60%;margin-bottom:var(--space-xl);"></div>
+
+                    <div style="display:flex;gap:var(--space-md);margin-bottom:var(--space-xl);">
+                        <div class="skeleton" style="width:100px;height:14px;"></div>
+                        <div class="skeleton" style="width:100px;height:14px;"></div>
+                        <div class="skeleton" style="width:100px;height:14px;"></div>
+                    </div>
+
+                    <div class="skeleton skeleton-text-lg" style="width:40%;margin-top:var(--space-xl);"></div>
+                    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-md);margin-bottom:var(--space-xl);">
+                        <div class="skeleton" style="height:80px;border-radius:var(--radius-lg);"></div>
+                        <div class="skeleton" style="height:80px;border-radius:var(--radius-lg);"></div>
+                        <div class="skeleton" style="height:80px;border-radius:var(--radius-lg);"></div>
+                        <div class="skeleton" style="height:80px;border-radius:var(--radius-lg);"></div>
+                    </div>
+
+                    <div class="skeleton skeleton-text-lg" style="width:35%;"></div>
+                    <div class="skeleton" style="height:48px;border-radius:var(--radius-md);margin-bottom:var(--space-sm);"></div>
+                    <div class="skeleton" style="height:48px;border-radius:var(--radius-md);margin-bottom:var(--space-sm);"></div>
+                    <div class="skeleton" style="height:48px;border-radius:var(--radius-md);margin-bottom:var(--space-sm);"></div>
+                    <div class="skeleton" style="height:48px;border-radius:var(--radius-md);margin-bottom:var(--space-sm);"></div>
+                    <div class="skeleton" style="height:48px;border-radius:var(--radius-md);margin-bottom:var(--space-xl);"></div>
+
+                    <div class="skeleton skeleton-text-lg" style="width:35%;"></div>
+                    <div style="display:flex;gap:var(--space-md);margin-bottom:var(--space-md);">
+                        <div class="skeleton" style="width:36px;height:36px;border-radius:50%;flex-shrink:0;"></div>
+                        <div>
+                            <div class="skeleton skeleton-text" style="width:200px;"></div>
+                            <div class="skeleton skeleton-text" style="width:300px;"></div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:var(--space-md);margin-bottom:var(--space-md);">
+                        <div class="skeleton" style="width:36px;height:36px;border-radius:50%;flex-shrink:0;"></div>
+                        <div>
+                            <div class="skeleton skeleton-text" style="width:200px;"></div>
+                            <div class="skeleton skeleton-text" style="width:300px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- No-JS Fallback -->
+        <noscript>
+            <div class="container" style="padding-top: calc(var(--header-height) + var(--space-2xl));">
+                <div class="empty-state">
+                    <div class="empty-state-icon">⚠️</div>
+                    <h1 class="empty-state-title">JavaScript Required</h1>
+                    <p class="empty-state-desc">This page requires JavaScript to display recipe details. Please enable JavaScript in your browser settings.</p>
+                    <a href="recipes.html" class="btn btn-primary">Browse All Recipes</a>
+                </div>
+            </div>
+        </noscript>
+
+        <!-- Related Recipes Section -->
+        <section class="section" aria-labelledby="related-heading" style="background:var(--white);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="related-heading" class="section-title">You Might Also Like</h2>
+                    <a href="recipes.html" class="view-all">View All →</a>
+                </div>
+                <div class="recipe-grid" id="related-recipes">
+                    <!-- Related Recipe 1 -->
+                    <article class="recipe-card" tabindex="0">
+                        <a href="recipe-detail.html?id=2" class="recipe-card-link" aria-label="Classic Margherita Pizza">
+                            <div class="recipe-card-image">
+                                <img src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=400&h=300&fit=crop" alt="Classic Margherita Pizza with fresh basil and mozzarella" loading="lazy" width="400" height="300">
+                                <span class="recipe-badge badge-popular">Popular</span>
+                                <button class="favorite-btn" aria-label="Add to favorites" data-recipe-id="2">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </button>
+                            </div>
+                            <div class="recipe-card-body">
+                                <div class="recipe-meta">
+                                    <span class="recipe-category">Italian</span>
+                                    <span class="recipe-rating">⭐ 4.9</span>
+                                </div>
+                                <h3 class="recipe-card-title">Classic Margherita Pizza</h3>
+                                <div class="recipe-info">
+                                    <span>⏱️ 40 min</span>
+                                    <span>👤 2 servings</span>
+                                    <span>🔥 Medium</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Related Recipe 2 -->
+                    <article class="recipe-card" tabindex="0">
+                        <a href="recipe-detail.html?id=7" class="recipe-card-link" aria-label="Grilled Salmon Teriyaki">
+                            <div class="recipe-card-image">
+                                <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop" alt="Grilled salmon with teriyaki glaze" loading="lazy" width="400" height="300">
+                                <span class="recipe-badge badge-trending">Trending</span>
+                                <button class="favorite-btn" aria-label="Add to favorites" data-recipe-id="7">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </button>
+                            </div>
+                            <div class="recipe-card-body">
+                                <div class="recipe-meta">
+                                    <span class="recipe-category">Seafood</span>
+                                    <span class="recipe-rating">⭐ 4.8</span>
+                                </div>
+                                <h3 class="recipe-card-title">Grilled Salmon Teriyaki</h3>
+                                <div class="recipe-info">
+                                    <span>⏱️ 20 min</span>
+                                    <span>👤 2 servings</span>
+                                    <span>🔥 Easy</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Related Recipe 3 -->
+                    <article class="recipe-card" tabindex="0">
+                        <a href="recipe-detail.html?id=8" class="recipe-card-link" aria-label="Chocolate Lava Cake">
+                            <div class="recipe-card-image">
+                                <img src="https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=300&fit=crop" alt="Chocolate lava cake with molten center" loading="lazy" width="400" height="300">
+                                <span class="recipe-badge badge-new">New</span>
+                                <button class="favorite-btn" aria-label="Add to favorites" data-recipe-id="8">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </button>
+                            </div>
+                            <div class="recipe-card-body">
+                                <div class="recipe-meta">
+                                    <span class="recipe-category">Desserts</span>
+                                    <span class="recipe-rating">⭐ 4.9</span>
+                                </div>
+                                <h3 class="recipe-card-title">Chocolate Lava Cake</h3>
+                                <div class="recipe-info">
+                                    <span>⏱️ 25 min</span>
+                                    <span>👤 2 servings</span>
+                                    <span>🔥 Medium</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Related Recipe 4 -->
+                    <article class="recipe-card" tabindex="0">
+                        <a href="recipe-detail.html?id=6" class="recipe-card-link" aria-label="Berry Smoothie Bowl">
+                            <div class="recipe-card-image">
+                                <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&h=300&fit=crop" alt="Colorful berry smoothie bowl with toppings" loading="lazy" width="400" height="300">
+                                <span class="recipe-badge badge-quick">Quick</span>
+                                <button class="favorite-btn" aria-label="Add to favorites" data-recipe-id="6">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </button>
+                            </div>
+                            <div class="recipe-card-body">
+                                <div class="recipe-meta">
+                                    <span class="recipe-category">Breakfast</span>
+                                    <span class="recipe-rating">⭐ 4.5</span>
+                                </div>
+                                <h3 class="recipe-card-title">Berry Smoothie Bowl</h3>
+                                <div class="recipe-info">
+                                    <span>⏱️ 10 min</span>
+                                    <span>👤 1 serving</span>
+                                    <span>🔥 Easy</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leave a Review Section -->
+        <section class="section" aria-labelledby="review-form-heading">
+            <div class="container">
+                <h2 id="review-form-heading" class="section-title mb-lg">Leave a Review</h2>
+
+                <div style="max-width: 600px;">
+                    <form id="review-form" novalidate>
+                        <!-- Rating -->
+                        <div class="form-group">
+                            <label class="form-label">Your Rating <span class="form-required">*</span></label>
+                            <div class="rating-stars" role="radiogroup" aria-label="Rate this recipe">
+                                <span class="rating-star" role="radio" aria-checked="false" aria-label="1 star" tabindex="0">☆</span>
+                                <span class="rating-star" role="radio" aria-checked="false" aria-label="2 stars" tabindex="0">☆</span>
+                                <span class="rating-star" role="radio" aria-checked="false" aria-label="3 stars" tabindex="0">☆</span>
+                                <span class="rating-star" role="radio" aria-checked="false" aria-label="4 stars" tabindex="0">☆</span>
+                                <span class="rating-star" role="radio" aria-checked="false" aria-label="5 stars" tabindex="0">☆</span>
+                            </div>
+                        </div>
+
+                        <!-- Name -->
+                        <div class="form-group">
+                            <label for="review-name" class="form-label">Your Name <span class="form-required">*</span></label>
+                            <input type="text" id="review-name" class="form-input" placeholder="Enter your name" required aria-required="true">
+                            <span class="form-field-error" id="review-name-error" role="alert"></span>
+                        </div>
+
+                        <!-- Comment -->
+                        <div class="form-group">
+                            <label for="review-comment" class="form-label">Your Review <span class="form-required">*</span></label>
+                            <textarea id="review-comment" class="form-textarea" rows="4" placeholder="Share your cooking experience..." required aria-required="true"></textarea>
+                            <span class="form-field-error" id="review-comment-error" role="alert"></span>
+                        </div>
+
+                        <!-- Image Upload (Optional) -->
+                        <div class="form-group">
+                            <label class="form-label">Photo (Optional)</label>
+                            <div class="image-upload-area" id="review-image-area" role="button" tabindex="0" aria-label="Upload photo">
+                                <div class="image-upload-icon">📷</div>
+                                <p class="image-upload-text">Tap to upload a photo of your dish</p>
+                            </div>
+                            <input type="file" id="review-image" accept="image/*" class="sr-only" aria-label="Upload review image">
+                            <div id="review-image-preview"></div>
+                        </div>
+
+                        <!-- Submit -->
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit Review</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" aria-label="Bottom navigation">
+        <a href="../index.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            <span>Home</span>
+        </a>
+        <a href="search.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Search</span>
+        </a>
+        <a href="favorites.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>Favorites</span>
+        </a>
+        <a href="meal-planner.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Planner</span>
+        </a>
+        <a href="profile.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🍳</span>
+                        <span class="logo-text">RecipeHub</span>
+                    </div>
+                    <p class="footer-desc">Your ultimate cooking companion. Discover recipes, plan meals, and cook with confidence.</p>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="recipes.html">Recipes</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="meal-planner.html">Meal Planner</a></li>
+                        <li><a href="shopping-list.html">Shopping List</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Community</h3>
+                    <ul class="footer-links">
+                        <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="favorites.html">My Favorites</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Connect</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📸</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="YouTube">🎬</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RecipeHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Review form handling specific to this page
+        (function() {
+            const reviewForm = document.getElementById('review-form');
+            if (!reviewForm) return;
+
+            // Image upload for review
+            const uploadArea = document.getElementById('review-image-area');
+            const fileInput = document.getElementById('review-image');
+            const preview = document.getElementById('review-image-preview');
+
+            if (uploadArea && fileInput) {
+                uploadArea.addEventListener('click', () => fileInput.click());
+                uploadArea.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        fileInput.click();
+                    }
+                });
+
+                fileInput.addEventListener('change', () => {
+                    const file = fileInput.files[0];
+                    if (file && file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            if (preview) {
+                                preview.innerHTML = `
+                                    <div style="position:relative;margin-top:var(--space-md);display:inline-block;">
+                                        <img src="${e.target.result}" alt="Your uploaded photo" style="max-width:200px;border-radius:var(--radius-lg);border:2px solid var(--gray-200);">
+                                        <button type="button" id="remove-review-image" style="position:absolute;top:-8px;right:-8px;width:28px;height:28px;background:var(--error);color:white;border:none;border-radius:50%;cursor:pointer;font-size:0.875rem;display:flex;align-items:center;justify-content:center;" aria-label="Remove photo">✕</button>
+                                    </div>
+                                `;
+                                uploadArea.style.display = 'none';
+
+                                document.getElementById('remove-review-image').addEventListener('click', () => {
+                                    preview.innerHTML = '';
+                                    fileInput.value = '';
+                                    uploadArea.style.display = '';
+                                });
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            // Form submission
+            reviewForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                let isValid = true;
+
+                // Clear errors
+                document.querySelectorAll('.form-field-error', reviewForm).forEach(el => {
+                    el.classList.remove('visible');
+                    el.textContent = '';
+                });
+                document.querySelectorAll('.form-input.error, .form-textarea.error').forEach(el => {
+                    el.classList.remove('error');
+                });
+
+                // Check rating
+                const ratingStars = document.querySelector('.rating-stars');
+                const rating = ratingStars ? parseInt(ratingStars.dataset.rating || '0') : 0;
+                if (rating === 0) {
+                    isValid = false;
+                    // Visual feedback - could add error near stars
+                }
+
+                // Check name
+                const nameInput = document.getElementById('review-name');
+                if (nameInput && !nameInput.value.trim()) {
+                    isValid = false;
+                    nameInput.classList.add('error');
+                    const err = document.getElementById('review-name-error');
+                    if (err) {
+                        err.textContent = 'Please enter your name.';
+                        err.classList.add('visible');
+                    }
+                }
+
+                // Check comment
+                const commentInput = document.getElementById('review-comment');
+                if (commentInput && !commentInput.value.trim()) {
+                    isValid = false;
+                    commentInput.classList.add('error');
+                    const err = document.getElementById('review-comment-error');
+                    if (err) {
+                        err.textContent = 'Please write a review.';
+                        err.classList.add('visible');
+                    }
+                }
+
+                if (!isValid) return;
+
+                // Simulate submission
+                const submitBtn = reviewForm.querySelector('button[type="submit"]');
+                const original = submitBtn.textContent;
+                submitBtn.textContent = 'Submitting...';
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    // Create the review card dynamically
+                    const reviewsSection = document.querySelector('.detail-section:last-of-type');
+                    if (reviewsSection) {
+                        const newReview = document.createElement('div');
+                        newReview.className = 'review-card animate-fade-in';
+                        newReview.style.borderColor = 'var(--primary)';
+                        newReview.innerHTML = `
+                            <div class="review-header">
+                                <div style="width:40px;height:40px;border-radius:50%;background:var(--primary);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;">${nameInput.value.trim().charAt(0).toUpperCase()}</div>
+                                <div>
+                                    <div class="review-author">${nameInput.value.trim()}</div>
+                                    <div class="review-date">Just now · ${'⭐'.repeat(rating)}</div>
+                                </div>
+                            </div>
+                            <p class="review-text">${commentInput.value.trim()}</p>
+                        `;
+
+                        // Insert at top of reviews
+                        const firstReview = reviewsSection.querySelector('.review-card');
+                        if (firstReview) {
+                            reviewsSection.insertBefore(newReview, firstReview);
+                        } else {
+                            reviewsSection.appendChild(newReview);
+                        }
+                    }
+
+                    // Reset form
+                    reviewForm.reset();
+                    if (preview) preview.innerHTML = '';
+                    if (uploadArea) uploadArea.style.display = '';
+
+                    // Reset stars
+                    document.querySelectorAll('.rating-star').forEach(s => {
+                        s.classList.remove('filled');
+                        s.textContent = '☆';
+                    });
+                    if (ratingStars) ratingStars.dataset.rating = '0';
+
+                    submitBtn.textContent = original;
+                    submitBtn.disabled = false;
+
+                    // Show toast
+                    const toast = document.querySelector('.toast');
+                    if (toast) {
+                        toast.textContent = 'Review submitted! Thank you! 🎉';
+                        toast.className = 'toast success show';
+                        setTimeout(() => toast.classList.remove('show'), 3000);
+                    }
+                }, 1500);
+            });
+        })();
+    </script>
+</body>
+</html>

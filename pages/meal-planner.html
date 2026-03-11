@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plan your weekly meals with RecipeHub's meal planner. Organize breakfast, lunch, and dinner for every day of the week.">
+    <title>Meal Planner — RecipeHub</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍳</text></svg>">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header-container">
+            <a href="../index.html" class="logo" aria-label="RecipeHub Home">
+                <span class="logo-icon">🍳</span>
+                <span class="logo-text">RecipeHub</span>
+            </a>
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <ul class="desktop-nav-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="recipes.html">Recipes</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="meal-planner.html" class="active">Meal Planner</a></li>
+                    <li><a href="search.html">Search</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobile-overlay" aria-hidden="true"></div>
+    <nav class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
+        <div class="mobile-menu-header">
+            <span class="logo-icon">🍳</span>
+            <span class="logo-text">RecipeHub</span>
+            <button class="mobile-menu-close" id="mobile-close" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="../index.html"><span class="menu-icon">🏠</span> Home</a></li>
+            <li><a href="recipes.html"><span class="menu-icon">📖</span> Recipes</a></li>
+            <li><a href="categories.html"><span class="menu-icon">📂</span> Categories</a></li>
+            <li><a href="favorites.html"><span class="menu-icon">❤️</span> Favorites</a></li>
+            <li><a href="meal-planner.html" class="active"><span class="menu-icon">📅</span> Meal Planner</a></li>
+            <li><a href="shopping-list.html"><span class="menu-icon">🛒</span> Shopping List</a></li>
+            <li><a href="search.html"><span class="menu-icon">🔍</span> Search</a></li>
+            <li><a href="submit-recipe.html"><span class="menu-icon">✍️</span> Submit Recipe</a></li>
+            <li><a href="profile.html"><span class="menu-icon">👤</span> Profile</a></li>
+            <li><a href="about.html"><span class="menu-icon">ℹ️</span> About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- Page Header -->
+        <section class="page-header" aria-labelledby="page-title">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span aria-current="page">Meal Planner</span>
+                </nav>
+                <h1 id="page-title" class="page-header-title">Meal Planner 📅</h1>
+                <p class="page-header-subtitle">Organize your weekly meals. Tap any slot to add a recipe from your collection.</p>
+            </div>
+        </section>
+
+        <!-- Planner Controls -->
+        <section class="section pt-0" aria-labelledby="planner-controls-heading">
+            <div class="container">
+
+                <h2 id="planner-controls-heading" class="sr-only">Planner Controls</h2>
+
+                <!-- Week Navigation -->
+                <div class="flex justify-between items-center mb-lg flex-wrap gap-md">
+                    <div class="flex items-center gap-sm">
+                        <button class="btn btn-outline-dark btn-sm" id="prev-week-btn" aria-label="Previous week">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15,18 9,12 15,6"/></svg>
+                        </button>
+                        <h3 class="section-title mb-0" id="week-label" style="font-size:1.125rem;">This Week</h3>
+                        <button class="btn btn-outline-dark btn-sm" id="next-week-btn" aria-label="Next week">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9,18 15,12 9,6"/></svg>
+                        </button>
+                    </div>
+                    <div class="flex gap-sm">
+                        <button class="btn btn-outline-dark btn-sm" id="generate-shopping-btn">
+                            🛒 Generate Shopping List
+                        </button>
+                        <button class="btn btn-outline-dark btn-sm" id="clear-plan-btn">
+                            🗑️ Clear Plan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Day Tabs -->
+                <div class="planner-week" role="tablist" aria-label="Select day of the week">
+                    <button class="day-tab active" data-day="0" role="tab" aria-selected="true" aria-controls="day-panel">
+                        <span style="display:block;font-size:0.6875rem;color:var(--gray-500);">MON</span>
+                        <span style="font-size:1.125rem;font-weight:700;">14</span>
+                    </button>
+                    <button class="day-tab" data-day="1" role="tab" aria-selected="false" aria-controls="day-panel">
+                        <span style="display:block;font-size:0.6875rem;color:var(--gray-500);">TUE</span>
+                        <span style="font-size:1.125rem;font-weight:700;">15</span>
+                    </button>
+                    <button class="day-tab" data-day="2" role="tab" aria-selected="false" aria-controls="day-panel">
+                        <span style="display:block;font-size:0.6875rem;color:var(--gray-500);">WED</span>
+                        <span style="font-size:1.125rem;font-weight:700;">16</span>
+                    </button>
+                    <button class="day-tab" data-day="3" role="tab" aria-selected="false" aria-controls="day-panel">
+                        <span style="display:block;font-size:0.6875rem;color:var(--gray-500);">THU</span>
+                        <span style="font-size:1.125rem;font-weight:700;">17</span>
+                    </button>
+                    <button class="day-tab" data-day="4" role="tab" aria-selected="false" aria-controls="day-panel">
+                        <span style="display:block;font-size:0.6875rem;color:var(--gray-500);">FRI</span>
+                        <span style="font-size:1.125rem;font-weight:700;">18</span>
+                    </button>
+                    <button class="day-tab" data-day="5" role="tab" aria-selected="false" aria-controls="day-panel">
+                        <span style="display:block;font-size:0.6875rem;color:var(--gray-500);">SAT</span>
+                        <span style="font-size:1.125rem;font-weight:700;">19</span>
+                    </button>
+                    <button class="day-tab" data-day="6" role="tab" aria-selected="false" aria-controls="day-panel">
+                        <span style="display:block;font-size:0.6875rem;color:var(--gray-500);">SUN</span>
+                        <span style="font-size:1.125rem;font-weight:700;">20</span>
+                    </button>
+                </div>
+
+                <!-- Daily Summary Bar -->
+                <div class="flex justify-between items-center mt-md mb-lg" style="padding: var(--space-md); background: var(--white); border-radius: var(--radius-xl); border: 1px solid var(--gray-200);">
+                    <div>
+                        <span style="font-weight:700;font-size:0.9375rem;" id="selected-day-name">Monday</span>
+                        <span style="font-size:0.8125rem;color:var(--gray-500);display:block;" id="selected-day-date">July 14, 2025</span>
+                    </div>
+                    <div class="flex gap-md" style="font-size:0.8125rem;color:var(--gray-600);">
+                        <div style="text-align:center;">
+                            <span style="font-weight:700;color:var(--primary);display:block;" id="day-meal-count">0</span>
+                            <span>meals</span>
+                        </div>
+                        <div style="text-align:center;">
+                            <span style="font-weight:700;color:var(--primary);display:block;" id="day-cal-count">0</span>
+                            <span>calories</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meal Slots (JS Rendered) -->
+                <div id="planner-container" role="tabpanel" id="day-panel" aria-label="Meal slots for selected day">
+                    <!-- JS populates breakfast, lunch, dinner slots -->
+
+                    <!-- Static fallback -->
+                    <noscript>
+                        <div class="meal-slot">
+                            <div class="meal-slot-label">Breakfast</div>
+                            <div class="meal-slot-add">+ Tap to add a recipe</div>
+                        </div>
+                        <div class="meal-slot">
+                            <div class="meal-slot-label">Lunch</div>
+                            <div class="meal-slot-add">+ Tap to add a recipe</div>
+                        </div>
+                        <div class="meal-slot">
+                            <div class="meal-slot-label">Dinner</div>
+                            <div class="meal-slot-add">+ Tap to add a recipe</div>
+                        </div>
+                    </noscript>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Weekly Overview -->
+        <section class="section" aria-labelledby="weekly-overview-heading" style="background: var(--white);">
+            <div class="container">
+                <h2 id="weekly-overview-heading" class="section-title mb-lg">📊 Weekly Overview</h2>
+
+                <!-- Nutrition Summary Cards -->
+                <div class="nutrition-grid mb-xl">
+                    <div class="nutrition-item">
+                        <span class="nutrition-value" id="weekly-meals">0</span>
+                        <span class="nutrition-label">Total Meals</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <span class="nutrition-value" id="weekly-calories">0</span>
+                        <span class="nutrition-label">Avg Calories</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <span class="nutrition-value" id="weekly-recipes">0</span>
+                        <span class="nutrition-label">Unique Recipes</span>
+                    </div>
+                    <div class="nutrition-item">
+                        <span class="nutrition-value" id="weekly-time">0</span>
+                        <span class="nutrition-label">Total Cook Time</span>
+                    </div>
+                </div>
+
+                <!-- Quick View Table -->
+                <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
+                    <table style="width: 100%; border-collapse: collapse; min-width: 500px;" aria-label="Weekly meal plan summary">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--gray-200);">
+                                <th style="text-align:left;padding:var(--space-md);font-size:0.8125rem;color:var(--gray-500);font-weight:600;">Day</th>
+                                <th style="text-align:left;padding:var(--space-md);font-size:0.8125rem;color:var(--gray-500);font-weight:600;">Breakfast</th>
+                                <th style="text-align:left;padding:var(--space-md);font-size:0.8125rem;color:var(--gray-500);font-weight:600;">Lunch</th>
+                                <th style="text-align:left;padding:var(--space-md);font-size:0.8125rem;color:var(--gray-500);font-weight:600;">Dinner</th>
+                            </tr>
+                        </thead>
+                        <tbody id="weekly-table-body">
+                            <tr style="border-bottom:1px solid var(--gray-100);">
+                                <td style="padding:var(--space-md);font-weight:600;font-size:0.875rem;">Mon</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid var(--gray-100);">
+                                <td style="padding:var(--space-md);font-weight:600;font-size:0.875rem;">Tue</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid var(--gray-100);">
+                                <td style="padding:var(--space-md);font-weight:600;font-size:0.875rem;">Wed</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid var(--gray-100);">
+                                <td style="padding:var(--space-md);font-weight:600;font-size:0.875rem;">Thu</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid var(--gray-100);">
+                                <td style="padding:var(--space-md);font-weight:600;font-size:0.875rem;">Fri</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                            </tr>
+                            <tr style="border-bottom:1px solid var(--gray-100);">
+                                <td style="padding:var(--space-md);font-weight:600;font-size:0.875rem;">Sat</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:var(--space-md);font-weight:600;font-size:0.875rem;">Sun</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                                <td style="padding:var(--space-md);font-size:0.8125rem;color:var(--gray-400);">—</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Meal Planning Tips -->
+        <section class="section" aria-labelledby="tips-heading">
+            <div class="container">
+                <h2 id="tips-heading" class="section-title text-center mb-lg">💡 Meal Planning Tips</h2>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-icon">📝</div>
+                        <h3 class="step-title">Plan Ahead</h3>
+                        <p class="step-desc">Set aside 15 minutes each weekend to plan the upcoming week's meals. It saves time and reduces stress.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-icon">🔄</div>
+                        <h3 class="step-title">Repurpose Leftovers</h3>
+                        <p class="step-desc">Cook once, eat twice! Transform Monday's roast chicken into Tuesday's chicken salad wraps.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-icon">🌈</div>
+                        <h3 class="step-title">Eat the Rainbow</h3>
+                        <p class="step-desc">Include a variety of colorful fruits and vegetables throughout the week for balanced nutrition.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-icon">📦</div>
+                        <h3 class="step-title">Batch Cook</h3>
+                        <p class="step-desc">Prepare grains, proteins, and sauces in bulk on weekends for quick assembly during busy weekdays.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Access CTA -->
+        <section class="section newsletter" aria-labelledby="planner-cta-heading">
+            <div class="container">
+                <div class="newsletter-card">
+                    <h2 id="planner-cta-heading" class="newsletter-title">Ready to Shop? 🛒</h2>
+                    <p class="newsletter-desc">Generate a complete shopping list from your meal plan with one tap. Never forget an ingredient again.</p>
+                    <div class="flex gap-md" style="justify-content:center;flex-wrap:wrap;">
+                        <a href="shopping-list.html" class="btn btn-lg" style="background:var(--white);color:var(--primary);">View Shopping List</a>
+                        <a href="recipes.html" class="btn btn-outline btn-lg">Browse More Recipes</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" aria-label="Bottom navigation">
+        <a href="../index.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            <span>Home</span>
+        </a>
+        <a href="search.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Search</span>
+        </a>
+        <a href="favorites.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>Favorites</span>
+        </a>
+        <a href="meal-planner.html" class="bottom-nav-item active" aria-current="page">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Planner</span>
+        </a>
+        <a href="profile.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🍳</span>
+                        <span class="logo-text">RecipeHub</span>
+                    </div>
+                    <p class="footer-desc">Your ultimate cooking companion. Discover recipes, plan meals, and cook with confidence.</p>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="recipes.html">Recipes</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="meal-planner.html">Meal Planner</a></li>
+                        <li><a href="shopping-list.html">Shopping List</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Community</h3>
+                    <ul class="footer-links">
+                        <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="favorites.html">My Favorites</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Connect</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📸</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="YouTube">🎬</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RecipeHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Meal Planner page-specific logic
+        (function () {
+            const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+            const dayAbbr = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+            const dayTabs = document.querySelectorAll('.day-tab');
+            let activeDay = 0;
+
+            // Update selected day info
+            function updateDayInfo() {
+                const nameEl = document.getElementById('selected-day-name');
+                const dateEl = document.getElementById('selected-day-date');
+
+                if (nameEl) nameEl.textContent = days[activeDay];
+
+                // Calculate date based on current week
+                const today = new Date();
+                const monday = new Date(today);
+                monday.setDate(today.getDate() - today.getDay() + 1);
+                const selectedDate = new Date(monday);
+                selectedDate.setDate(monday.getDate() + activeDay);
+
+                if (dateEl) {
+                    dateEl.textContent = selectedDate.toLocaleDateString('en-US', {
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric'
+                    });
+                }
+
+                // Update day dates on tabs
+                dayTabs.forEach((tab, i) => {
+                    const tabDate = new Date(monday);
+                    tabDate.setDate(monday.getDate() + i);
+                    const dateSpan = tab.querySelectorAll('span');
+                    if (dateSpan.length > 1) {
+                        dateSpan[1].textContent = tabDate.getDate();
+                    }
+                });
+
+                updateDailyStats();
+            }
+
+            // Update daily stats
+            function updateDailyStats() {
+                const plan = JSON.parse(localStorage.getItem('recipehub_meal_plan') || '{}');
+                const dayKey = days[activeDay].toLowerCase();
+                const dayMeals = plan[dayKey] || {};
+                const mealCount = Object.keys(dayMeals).length;
+
+                const mealCountEl = document.getElementById('day-meal-count');
+                const calCountEl = document.getElementById('day-cal-count');
+
+                if (mealCountEl) mealCountEl.textContent = mealCount;
+
+                // Estimate calories
+                let totalCals = 0;
+                Object.values(dayMeals).forEach(recipeId => {
+                    // Simple calorie lookup
+                    const calorieMap = { 1: 380, 2: 450, 3: 340, 4: 320, 5: 520, 6: 280, 7: 410, 8: 480 };
+                    totalCals += calorieMap[recipeId] || 400;
+                });
+                if (calCountEl) calCountEl.textContent = totalCals;
+            }
+
+            // Update weekly overview table
+            function updateWeeklyTable() {
+                const plan = JSON.parse(localStorage.getItem('recipehub_meal_plan') || '{}');
+                const tbody = document.getElementById('weekly-table-body');
+                if (!tbody) return;
+
+                const recipeNames = {
+                    1: 'Tuscan Shrimp', 2: 'Margherita Pizza', 3: 'Thai Curry',
+                    4: 'Avocado Toast', 5: 'Carbonara', 6: 'Smoothie Bowl',
+                    7: 'Salmon Teriyaki', 8: 'Lava Cake'
+                };
+
+                let totalMeals = 0;
+                let totalCals = 0;
+                let uniqueRecipes = new Set();
+
+                let html = '';
+                days.forEach((day, i) => {
+                    const dayKey = day.toLowerCase();
+                    const meals = plan[dayKey] || {};
+
+                    const b = meals.breakfast ? recipeNames[meals.breakfast] || 'Recipe' : '—';
+                    const l = meals.lunch ? recipeNames[meals.lunch] || 'Recipe' : '—';
+                    const d = meals.dinner ? recipeNames[meals.dinner] || 'Recipe' : '—';
+
+                    const bStyle = meals.breakfast ? 'color:var(--gray-800);font-weight:500;' : 'color:var(--gray-400);';
+                    const lStyle = meals.lunch ? 'color:var(--gray-800);font-weight:500;' : 'color:var(--gray-400);';
+                    const dStyle = meals.dinner ? 'color:var(--gray-800);font-weight:500;' : 'color:var(--gray-400);';
+
+                    Object.values(meals).forEach(id => {
+                        totalMeals++;
+                        uniqueRecipes.add(id);
+                        const calMap = { 1: 380, 2: 450, 3: 340, 4: 320, 5: 520, 6: 280, 7: 410, 8: 480 };
+                        totalCals += calMap[id] || 400;
+                    });
+
+                    const border = i < 6 ? 'border-bottom:1px solid var(--gray-100);' : '';
+
+                    html += `
+                        <tr style="${border}cursor:pointer;" onclick="document.querySelectorAll('.day-tab')[${i}].click()">
+                            <td style="padding:var(--space-md);font-weight:600;font-size:0.875rem;">${dayAbbr[i]}</td>
+                            <td style="padding:var(--space-md);font-size:0.8125rem;${bStyle}">${b}</td>
+                            <td style="padding:var(--space-md);font-size:0.8125rem;${lStyle}">${l}</td>
+                            <td style="padding:var(--space-md);font-size:0.8125rem;${dStyle}">${d}</td>
+                        </tr>
+                    `;
+                });
+
+                tbody.innerHTML = html;
+
+                // Update summary cards
+                const weeklyMealsEl = document.getElementById('weekly-meals');
+                const weeklyCalEl = document.getElementById('weekly-calories');
+                const weeklyRecipesEl = document.getElementById('weekly-recipes');
+                const weeklyTimeEl = document.getElementById('weekly-time');
+
+                if (weeklyMealsEl) weeklyMealsEl.textContent = totalMeals;
+                if (weeklyCalEl) weeklyCalEl.textContent = totalMeals > 0 ? Math.round(totalCals / totalMeals) : 0;
+                if (weeklyRecipesEl) weeklyRecipesEl.textContent = uniqueRecipes.size;
+                if (weeklyTimeEl) weeklyTimeEl.textContent = (totalMeals * 25) + 'm';
+            }
+
+            // Day tab clicks
+            dayTabs.forEach((tab, index) => {
+                tab.addEventListener('click', () => {
+                    dayTabs.forEach(t => {
+                        t.classList.remove('active');
+                        t.setAttribute('aria-selected', 'false');
+                    });
+                    tab.classList.add('active');
+                    tab.setAttribute('aria-selected', 'true');
+                    activeDay = index;
+                    updateDayInfo();
+                    updateWeeklyTable();
+                });
+            });
+
+            // Clear plan button
+            const clearBtn = document.getElementById('clear-plan-btn');
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    const plan = JSON.parse(localStorage.getItem('recipehub_meal_plan') || '{}');
+                    if (Object.keys(plan).length === 0) {
+                        const toast = document.querySelector('.toast');
+                        if (toast) {
+                            toast.textContent = 'Meal plan is already empty';
+                            toast.className = 'toast show';
+                            setTimeout(() => toast.classList.remove('show'), 3000);
+                        }
+                        return;
+                    }
+
+                    const confirmed = confirm('Clear the entire meal plan for this week?');
+                    if (!confirmed) return;
+
+                    localStorage.setItem('recipehub_meal_plan', '{}');
+                    updateDayInfo();
+                    updateWeeklyTable();
+
+                    // Trigger re-render of planner slots
+                    if (typeof window.initMealPlanner === 'function') {
+                        window.initMealPlanner();
+                    }
+
+                    const toast = document.querySelector('.toast');
+                    if (toast) {
+                        toast.textContent = 'Meal plan cleared 🗑️';
+                        toast.className = 'toast show';
+                        setTimeout(() => toast.classList.remove('show'), 3000);
+                    }
+
+                    // Force page function re-run
+                    location.reload();
+                });
+            }
+
+            // Generate shopping list button
+            const generateBtn = document.getElementById('generate-shopping-btn');
+            if (generateBtn) {
+                generateBtn.addEventListener('click', () => {
+                    const plan = JSON.parse(localStorage.getItem('recipehub_meal_plan') || '{}');
+                    const recipeIds = new Set();
+
+                    Object.values(plan).forEach(dayMeals => {
+                        Object.values(dayMeals).forEach(id => recipeIds.add(id));
+                    });
+
+                    if (recipeIds.size === 0) {
+                        const toast = document.querySelector('.toast');
+                        if (toast) {
+                            toast.textContent = 'Add meals to your plan first';
+                            toast.className = 'toast error show';
+                            setTimeout(() => toast.classList.remove('show'), 3000);
+                        }
+                        return;
+                    }
+
+                    const toast = document.querySelector('.toast');
+                    if (toast) {
+                        toast.textContent = 'Shopping list generated! 🛒';
+                        toast.className = 'toast success show';
+                        setTimeout(() => {
+                            toast.classList.remove('show');
+                            window.location.href = 'shopping-list.html';
+                        }, 1500);
+                    }
+                });
+            }
+
+            // Week navigation
+            const prevWeekBtn = document.getElementById('prev-week-btn');
+            const nextWeekBtn = document.getElementById('next-week-btn');
+            const weekLabel = document.getElementById('week-label');
+            let weekOffset = 0;
+
+            function updateWeekLabel() {
+                if (weekOffset === 0) {
+                    if (weekLabel) weekLabel.textContent = 'This Week';
+                } else if (weekOffset === 1) {
+                    if (weekLabel) weekLabel.textContent = 'Next Week';
+                } else if (weekOffset === -1) {
+                    if (weekLabel) weekLabel.textContent = 'Last Week';
+                } else {
+                    const direction = weekOffset > 0 ? '+' : '';
+                    if (weekLabel) weekLabel.textContent = `Week ${direction}${weekOffset}`;
+                }
+            }
+
+            if (prevWeekBtn) {
+                prevWeekBtn.addEventListener('click', () => {
+                    weekOffset--;
+                    updateWeekLabel();
+                    updateDayInfo();
+                });
+            }
+
+            if (nextWeekBtn) {
+                nextWeekBtn.addEventListener('click', () => {
+                    weekOffset++;
+                    updateWeekLabel();
+                    updateDayInfo();
+                });
+            }
+
+            // MutationObserver to watch for planner container changes and update stats
+            const plannerContainer = document.getElementById('planner-container');
+            if (plannerContainer) {
+                const observer = new MutationObserver(() => {
+                    updateDailyStats();
+                    updateWeeklyTable();
+                });
+                observer.observe(plannerContainer, { childList: true, subtree: true });
+            }
+
+            // Initial render
+            updateDayInfo();
+            updateWeeklyTable();
+        })();
+    </script>
+</body>
+</html>

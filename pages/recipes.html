@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse all recipes on RecipeHub. Filter by category and find your next favorite meal.">
+    <title>All Recipes — RecipeHub</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍳</text></svg>">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header-container">
+            <a href="../index.html" class="logo" aria-label="RecipeHub Home">
+                <span class="logo-icon">🍳</span>
+                <span class="logo-text">RecipeHub</span>
+            </a>
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <ul class="desktop-nav-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="recipes.html" class="active">Recipes</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="meal-planner.html">Meal Planner</a></li>
+                    <li><a href="search.html">Search</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobile-overlay" aria-hidden="true"></div>
+    <nav class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
+        <div class="mobile-menu-header">
+            <span class="logo-icon">🍳</span>
+            <span class="logo-text">RecipeHub</span>
+            <button class="mobile-menu-close" id="mobile-close" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="../index.html"><span class="menu-icon">🏠</span> Home</a></li>
+            <li><a href="recipes.html" class="active"><span class="menu-icon">📖</span> Recipes</a></li>
+            <li><a href="categories.html"><span class="menu-icon">📂</span> Categories</a></li>
+            <li><a href="favorites.html"><span class="menu-icon">❤️</span> Favorites</a></li>
+            <li><a href="meal-planner.html"><span class="menu-icon">📅</span> Meal Planner</a></li>
+            <li><a href="shopping-list.html"><span class="menu-icon">🛒</span> Shopping List</a></li>
+            <li><a href="search.html"><span class="menu-icon">🔍</span> Search</a></li>
+            <li><a href="submit-recipe.html"><span class="menu-icon">✍️</span> Submit Recipe</a></li>
+            <li><a href="profile.html"><span class="menu-icon">👤</span> Profile</a></li>
+            <li><a href="about.html"><span class="menu-icon">ℹ️</span> About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- Page Header -->
+        <section class="page-header" aria-labelledby="page-title">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span aria-current="page">Recipes</span>
+                </nav>
+                <h1 id="page-title" class="page-header-title">All Recipes</h1>
+                <p class="page-header-subtitle">Explore our collection of delicious, easy-to-follow recipes for every occasion.</p>
+            </div>
+        </section>
+
+        <!-- Filters & Recipe Listing -->
+        <section class="section" aria-labelledby="recipes-section-title">
+            <div class="container">
+
+                <h2 id="recipes-section-title" class="sr-only">Recipe Collection</h2>
+
+                <!-- Sort & View Options -->
+                <div class="flex justify-between items-center mb-lg flex-wrap gap-md">
+                    <p class="search-results-count" id="recipe-total-count">Showing all recipes</p>
+                    <div class="flex gap-sm">
+                        <label for="sort-select" class="sr-only">Sort recipes</label>
+                        <select id="sort-select" class="form-select" style="min-width:150px; padding: 0.5rem 2rem 0.5rem 0.75rem; min-height:40px; border-radius: var(--radius-lg);">
+                            <option value="popular">Most Popular</option>
+                            <option value="rating">Highest Rated</option>
+                            <option value="newest">Newest First</option>
+                            <option value="quickest">Quickest</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="filter-tabs" role="tablist">
+    <button class="filter-tab active" data-category="all" role="tab" aria-selected="true">All Recipes</button>
+    <button class="filter-tab" data-category="breakfast" role="tab" aria-selected="false">🍳 Breakfast</button>
+    <button class="filter-tab" data-category="low-calorie" role="tab" aria-selected="false">🥗 Low Calorie</button>
+    <button class="filter-tab" data-category="quick" role="tab" aria-selected="false">⚡ Quick (≤30 min)</button>
+    <button class="filter-tab" data-category="vegetarian" role="tab" aria-selected="false">🌱 Vegetarian</button>
+    <button class="filter-tab" data-category="indian" role="tab" aria-selected="false">🇮🇳 Indian</button>
+    <button class="filter-tab" data-category="seafood" role="tab" aria-selected="false">🦐 Seafood</button>
+    <button class="filter-tab" data-category="desserts" role="tab" aria-selected="false">🍰 Desserts</button>
+</div>
+
+<div class="mb-lg" id="recipes-count-wrapper">
+    <h2 id="recipes-count">24 recipes</h2>
+</div>
+
+                <!-- Quick Filter Chips -->
+                <div class="flex gap-sm flex-wrap mb-lg mt-md">
+                    <button class="filter-tab btn-sm" id="filter-easy" aria-pressed="false">🟢 Easy</button>
+                    <button class="filter-tab btn-sm" id="filter-quick" aria-pressed="false">⚡ Under 20 min</button>
+                    <button class="filter-tab btn-sm" id="filter-lowcal" aria-pressed="false">🥗 Low Calorie</button>
+                </div>
+
+                <!-- Recipe Grid (Dynamically Rendered) -->
+                <div class="recipe-grid" id="recipes-listing" role="feed" aria-label="Recipe results">
+                    <!-- JS will populate this -->
+
+                    <!-- Static fallback / no-JS content -->
+                    <noscript>
+                        <article class="recipe-card">
+                            <a href="recipe-detail.html?id=1" class="recipe-card-link">
+                                <div class="recipe-card-image">
+                                    <img src="https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?w=400&h=300&fit=crop" alt="Creamy Garlic Tuscan Shrimp" loading="lazy" width="400" height="300">
+                                </div>
+                                <div class="recipe-card-body">
+                                    <div class="recipe-meta">
+                                        <span class="recipe-category">Seafood</span>
+                                        <span class="recipe-rating">⭐ 4.8</span>
+                                    </div>
+                                    <h3 class="recipe-card-title">Creamy Garlic Tuscan Shrimp</h3>
+                                    <div class="recipe-info">
+                                        <span>⏱️ 25 min</span>
+                                        <span>👤 4 servings</span>
+                                        <span>🔥 Easy</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="recipe-card">
+                            <a href="recipe-detail.html?id=2" class="recipe-card-link">
+                                <div class="recipe-card-image">
+                                    <img src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=400&h=300&fit=crop" alt="Classic Margherita Pizza" loading="lazy" width="400" height="300">
+                                </div>
+                                <div class="recipe-card-body">
+                                    <div class="recipe-meta">
+                                        <span class="recipe-category">Italian</span>
+                                        <span class="recipe-rating">⭐ 4.9</span>
+                                    </div>
+                                    <h3 class="recipe-card-title">Classic Margherita Pizza</h3>
+                                    <div class="recipe-info">
+                                        <span>⏱️ 40 min</span>
+                                        <span>👤 2 servings</span>
+                                        <span>🔥 Medium</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="recipe-card">
+                            <a href="recipe-detail.html?id=3" class="recipe-card-link">
+                                <div class="recipe-card-image">
+                                    <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&h=300&fit=crop" alt="Thai Green Curry" loading="lazy" width="400" height="300">
+                                </div>
+                                <div class="recipe-card-body">
+                                    <div class="recipe-meta">
+                                        <span class="recipe-category">Asian</span>
+                                        <span class="recipe-rating">⭐ 4.7</span>
+                                    </div>
+                                    <h3 class="recipe-card-title">Thai Green Curry</h3>
+                                    <div class="recipe-info">
+                                        <span>⏱️ 35 min</span>
+                                        <span>👤 3 servings</span>
+                                        <span>🔥 Medium</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="recipe-card">
+                            <a href="recipe-detail.html?id=4" class="recipe-card-link">
+                                <div class="recipe-card-image">
+                                    <img src="https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=400&h=300&fit=crop" alt="Avocado Toast Deluxe" loading="lazy" width="400" height="300">
+                                </div>
+                                <div class="recipe-card-body">
+                                    <div class="recipe-meta">
+                                        <span class="recipe-category">Breakfast</span>
+                                        <span class="recipe-rating">⭐ 4.6</span>
+                                    </div>
+                                    <h3 class="recipe-card-title">Avocado Toast Deluxe</h3>
+                                    <div class="recipe-info">
+                                        <span>⏱️ 10 min</span>
+                                        <span>👤 1 serving</span>
+                                        <span>🔥 Easy</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="recipe-card">
+                            <a href="recipe-detail.html?id=5" class="recipe-card-link">
+                                <div class="recipe-card-image">
+                                    <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&h=300&fit=crop" alt="Homemade Pasta Carbonara" loading="lazy" width="400" height="300">
+                                </div>
+                                <div class="recipe-card-body">
+                                    <div class="recipe-meta">
+                                        <span class="recipe-category">Italian</span>
+                                        <span class="recipe-rating">⭐ 4.9</span>
+                                    </div>
+                                    <h3 class="recipe-card-title">Homemade Pasta Carbonara</h3>
+                                    <div class="recipe-info">
+                                        <span>⏱️ 30 min</span>
+                                        <span>👤 4 servings</span>
+                                        <span>🔥 Medium</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="recipe-card">
+                            <a href="recipe-detail.html?id=6" class="recipe-card-link">
+                                <div class="recipe-card-image">
+                                    <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&h=300&fit=crop" alt="Berry Smoothie Bowl" loading="lazy" width="400" height="300">
+                                </div>
+                                <div class="recipe-card-body">
+                                    <div class="recipe-meta">
+                                        <span class="recipe-category">Breakfast</span>
+                                        <span class="recipe-rating">⭐ 4.5</span>
+                                    </div>
+                                    <h3 class="recipe-card-title">Berry Smoothie Bowl</h3>
+                                    <div class="recipe-info">
+                                        <span>⏱️ 10 min</span>
+                                        <span>👤 1 serving</span>
+                                        <span>🔥 Easy</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="recipe-card">
+                            <a href="recipe-detail.html?id=7" class="recipe-card-link">
+                                <div class="recipe-card-image">
+                                    <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop" alt="Grilled Salmon Teriyaki" loading="lazy" width="400" height="300">
+                                </div>
+                                <div class="recipe-card-body">
+                                    <div class="recipe-meta">
+                                        <span class="recipe-category">Seafood</span>
+                                        <span class="recipe-rating">⭐ 4.8</span>
+                                    </div>
+                                    <h3 class="recipe-card-title">Grilled Salmon Teriyaki</h3>
+                                    <div class="recipe-info">
+                                        <span>⏱️ 20 min</span>
+                                        <span>👤 2 servings</span>
+                                        <span>🔥 Easy</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="recipe-card">
+                            <a href="recipe-detail.html?id=8" class="recipe-card-link">
+                                <div class="recipe-card-image">
+                                    <img src="https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=300&fit=crop" alt="Chocolate Lava Cake" loading="lazy" width="400" height="300">
+                                </div>
+                                <div class="recipe-card-body">
+                                    <div class="recipe-meta">
+                                        <span class="recipe-category">Desserts</span>
+                                        <span class="recipe-rating">⭐ 4.9</span>
+                                    </div>
+                                    <h3 class="recipe-card-title">Chocolate Lava Cake</h3>
+                                    <div class="recipe-info">
+                                        <span>⏱️ 25 min</span>
+                                        <span>👤 2 servings</span>
+                                        <span>🔥 Medium</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                    </noscript>
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center mt-xl">
+                    <button class="btn btn-outline-dark btn-lg" id="load-more-btn">Load More Recipes</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Cooking Tips Banner -->
+        <section class="section" aria-labelledby="tips-heading" style="background: var(--white);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="tips-heading" class="section-title">💡 Quick Cooking Tips</h2>
+                </div>
+
+                <!-- Image Slider -->
+                <div class="slider-container" role="region" aria-label="Cooking tips slider" aria-roledescription="carousel">
+                    <div class="slider-track">
+                        <div class="slider-slide" role="group" aria-label="Tip 1 of 4">
+                            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=400&fit=crop" alt="Chef seasoning food - Always season as you cook" loading="lazy" width="800" height="400">
+                            <div style="position:absolute;bottom:0;left:0;right:0;padding:var(--space-lg);background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;">
+                                <h3 style="font-size:1.125rem;margin-bottom:4px;">Season As You Go</h3>
+                                <p style="font-size:0.8125rem;opacity:0.9;">Build layers of flavor by seasoning at every stage of cooking, not just at the end.</p>
+                            </div>
+                        </div>
+                        <div class="slider-slide" role="group" aria-label="Tip 2 of 4">
+                            <img src="https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?w=800&h=400&fit=crop" alt="Organized kitchen tools - Mise en place preparation" loading="lazy" width="800" height="400">
+                            <div style="position:absolute;bottom:0;left:0;right:0;padding:var(--space-lg);background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;">
+                                <h3 style="font-size:1.125rem;margin-bottom:4px;">Mise En Place</h3>
+                                <p style="font-size:0.8125rem;opacity:0.9;">Prepare and measure all ingredients before you start cooking for a smoother experience.</p>
+                            </div>
+                        </div>
+                        <div class="slider-slide" role="group" aria-label="Tip 3 of 4">
+                            <img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800&h=400&fit=crop" alt="Fresh ingredients on cutting board - Use fresh ingredients" loading="lazy" width="800" height="400">
+                            <div style="position:absolute;bottom:0;left:0;right:0;padding:var(--space-lg);background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;">
+                                <h3 style="font-size:1.125rem;margin-bottom:4px;">Fresh Is Best</h3>
+                                <p style="font-size:0.8125rem;opacity:0.9;">Use fresh, seasonal ingredients whenever possible. They need less effort to taste amazing.</p>
+                            </div>
+                        </div>
+                        <div class="slider-slide" role="group" aria-label="Tip 4 of 4">
+                            <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&h=400&fit=crop" alt="Knife skills on cutting board - Master knife skills" loading="lazy" width="800" height="400">
+                            <div style="position:absolute;bottom:0;left:0;right:0;padding:var(--space-lg);background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;">
+                                <h3 style="font-size:1.125rem;margin-bottom:4px;">Sharp Knives Matter</h3>
+                                <p style="font-size:0.8125rem;opacity:0.9;">A sharp knife is safer and more efficient. Invest in a good chef's knife and keep it honed.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-prev" aria-label="Previous tip">‹</button>
+                    <button class="slider-next" aria-label="Next tip">›</button>
+                    <div class="slider-controls" role="tablist" aria-label="Slide controls">
+                        <button class="slider-dot active" role="tab" aria-label="Go to tip 1" aria-selected="true"></button>
+                        <button class="slider-dot" role="tab" aria-label="Go to tip 2" aria-selected="false"></button>
+                        <button class="slider-dot" role="tab" aria-label="Go to tip 3" aria-selected="false"></button>
+                        <button class="slider-dot" role="tab" aria-label="Go to tip 4" aria-selected="false"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="section newsletter" aria-labelledby="cta-heading">
+            <div class="container">
+                <div class="newsletter-card">
+                    <h2 id="cta-heading" class="newsletter-title">Have a Recipe to Share? ✍️</h2>
+                    <p class="newsletter-desc">Join our community of home cooks and share your favorite recipes with thousands of food lovers.</p>
+                    <a href="submit-recipe.html" class="btn btn-primary btn-lg" style="background:var(--white);color:var(--primary);">Submit Your Recipe</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" aria-label="Bottom navigation">
+        <a href="../index.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            <span>Home</span>
+        </a>
+        <a href="search.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Search</span>
+        </a>
+        <a href="favorites.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>Favorites</span>
+        </a>
+        <a href="meal-planner.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Planner</span>
+        </a>
+        <a href="profile.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🍳</span>
+                        <span class="logo-text">RecipeHub</span>
+                    </div>
+                    <p class="footer-desc">Your ultimate cooking companion. Discover recipes, plan meals, and cook with confidence.</p>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="recipes.html">Recipes</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="meal-planner.html">Meal Planner</a></li>
+                        <li><a href="shopping-list.html">Shopping List</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Community</h3>
+                    <ul class="footer-links">
+                        <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="favorites.html">My Favorites</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Connect</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📸</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="YouTube">🎬</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RecipeHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

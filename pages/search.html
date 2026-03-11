@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Search RecipeHub for recipes by name, ingredient, cuisine, or cooking time. Find your perfect meal in seconds.">
+    <title>Search Recipes — RecipeHub</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍳</text></svg>">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header-container">
+            <a href="../index.html" class="logo" aria-label="RecipeHub Home">
+                <span class="logo-icon">🍳</span>
+                <span class="logo-text">RecipeHub</span>
+            </a>
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <ul class="desktop-nav-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="recipes.html">Recipes</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="meal-planner.html">Meal Planner</a></li>
+                    <li><a href="search.html" class="active">Search</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobile-overlay" aria-hidden="true"></div>
+    <nav class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
+        <div class="mobile-menu-header">
+            <span class="logo-icon">🍳</span>
+            <span class="logo-text">RecipeHub</span>
+            <button class="mobile-menu-close" id="mobile-close" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="../index.html"><span class="menu-icon">🏠</span> Home</a></li>
+            <li><a href="recipes.html"><span class="menu-icon">📖</span> Recipes</a></li>
+            <li><a href="categories.html"><span class="menu-icon">📂</span> Categories</a></li>
+            <li><a href="favorites.html"><span class="menu-icon">❤️</span> Favorites</a></li>
+            <li><a href="meal-planner.html"><span class="menu-icon">📅</span> Meal Planner</a></li>
+            <li><a href="shopping-list.html"><span class="menu-icon">🛒</span> Shopping List</a></li>
+            <li><a href="search.html" class="active"><span class="menu-icon">🔍</span> Search</a></li>
+            <li><a href="submit-recipe.html"><span class="menu-icon">✍️</span> Submit Recipe</a></li>
+            <li><a href="profile.html"><span class="menu-icon">👤</span> Profile</a></li>
+            <li><a href="about.html"><span class="menu-icon">ℹ️</span> About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- Page Header -->
+        <section class="page-header" aria-labelledby="page-title">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span aria-current="page">Search</span>
+                </nav>
+                <h1 id="page-title" class="page-header-title">Search Recipes 🔍</h1>
+                <p class="page-header-subtitle">Find the perfect recipe by name, ingredient, cuisine, or cooking time.</p>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="section" aria-labelledby="search-section-title">
+            <div class="container">
+
+                <h2 id="search-section-title" class="sr-only">Recipe Search</h2>
+
+                <!-- Search Input -->
+                <div class="search-page-input" role="search">
+                    <label for="search-input" class="sr-only">Search recipes</label>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="2" style="margin-left:var(--space-md);flex-shrink:0;" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <input type="search" id="search-input" name="q" placeholder="Search recipes, ingredients, cuisines..." autocomplete="off" autofocus>
+                    <button type="button" id="clear-search-btn" class="btn btn-ghost btn-sm" aria-label="Clear search" style="display:none;margin-right:var(--space-sm);color:var(--gray-400);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+
+                <!-- Advanced Filters (Collapsible) -->
+                <div class="mb-lg">
+                    <button class="btn btn-ghost btn-sm" id="toggle-filters-btn" aria-expanded="false" aria-controls="advanced-filters" style="margin-bottom:var(--space-sm);">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+                        Advanced Filters
+                    </button>
+
+                    <div id="advanced-filters" style="display:none;" role="region" aria-label="Advanced search filters">
+                        <div style="background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-xl);padding:var(--space-lg);margin-bottom:var(--space-lg);">
+                            <div style="display:grid;grid-template-columns:1fr;gap:var(--space-md);">
+                                <!-- Cuisine Filter -->
+                                <div class="form-group mb-0">
+                                    <label for="filter-cuisine" class="form-label">Cuisine</label>
+                                    <select id="filter-cuisine" class="form-select">
+                                        <option value="">All Cuisines</option>
+                                        <option value="italian">Italian</option>
+                                        <option value="asian">Asian</option>
+                                        <option value="mexican">Mexican</option>
+                                        <option value="mediterranean">Mediterranean</option>
+                                        <option value="indian">Indian</option>
+                                        <option value="american">American</option>
+                                        <option value="french">French</option>
+                                        <option value="japanese">Japanese</option>
+                                    </select>
+                                </div>
+
+                                <!-- Difficulty Filter -->
+                                <div class="form-group mb-0">
+                                    <label for="filter-difficulty" class="form-label">Difficulty</label>
+                                    <select id="filter-difficulty" class="form-select">
+                                        <option value="">Any Difficulty</option>
+                                        <option value="easy">Easy</option>
+                                        <option value="medium">Medium</option>
+                                        <option value="hard">Hard</option>
+                                    </select>
+                                </div>
+
+                                <!-- Time Filter -->
+                                <div class="form-group mb-0">
+                                    <label for="filter-time" class="form-label">Max Cook Time</label>
+                                    <select id="filter-time" class="form-select">
+                                        <option value="">Any Time</option>
+                                        <option value="15">Under 15 min</option>
+                                        <option value="30">Under 30 min</option>
+                                        <option value="45">Under 45 min</option>
+                                        <option value="60">Under 1 hour</option>
+                                    </select>
+                                </div>
+
+                                <!-- Calories Filter -->
+                                <div class="form-group mb-0">
+                                    <label for="filter-calories" class="form-label">Max Calories</label>
+                                    <select id="filter-calories" class="form-select">
+                                        <option value="">Any Calories</option>
+                                        <option value="300">Under 300 cal</option>
+                                        <option value="400">Under 400 cal</option>
+                                        <option value="500">Under 500 cal</option>
+                                        <option value="600">Under 600 cal</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Filter Actions -->
+                            <div class="flex gap-sm mt-lg">
+                                <button class="btn btn-primary btn-sm" id="apply-filters-btn">Apply Filters</button>
+                                <button class="btn btn-ghost btn-sm" id="reset-filters-btn">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trending Searches -->
+                <div class="search-suggestions" id="search-suggestions">
+                    <div class="search-suggestion-title">🔥 Trending Searches</div>
+                    <div class="suggestion-tags">
+                        <button class="suggestion-tag" type="button">Pasta</button>
+                        <button class="suggestion-tag" type="button">Chicken</button>
+                        <button class="suggestion-tag" type="button">Salmon</button>
+                        <button class="suggestion-tag" type="button">Avocado</button>
+                        <button class="suggestion-tag" type="button">Curry</button>
+                        <button class="suggestion-tag" type="button">Chocolate</button>
+                        <button class="suggestion-tag" type="button">Shrimp</button>
+                        <button class="suggestion-tag" type="button">Smoothie</button>
+                    </div>
+
+                    <div class="search-suggestion-title mt-xl">🥘 Search by Ingredient</div>
+                    <div class="suggestion-tags">
+                        <button class="suggestion-tag" type="button">🧄 Garlic</button>
+                        <button class="suggestion-tag" type="button">🍅 Tomatoes</button>
+                        <button class="suggestion-tag" type="button">🧀 Cheese</button>
+                        <button class="suggestion-tag" type="button">🥚 Eggs</button>
+                        <button class="suggestion-tag" type="button">🍋 Lemon</button>
+                        <button class="suggestion-tag" type="button">🌶️ Chili</button>
+                        <button class="suggestion-tag" type="button">🥥 Coconut Milk</button>
+                        <button class="suggestion-tag" type="button">🫒 Olive Oil</button>
+                    </div>
+
+                    <div class="search-suggestion-title mt-xl">⏱️ Quick Meals</div>
+                    <div class="suggestion-tags">
+                        <button class="suggestion-tag" type="button">10-Minute Meals</button>
+                        <button class="suggestion-tag" type="button">No-Cook Recipes</button>
+                        <button class="suggestion-tag" type="button">One-Pot Dinners</button>
+                        <button class="suggestion-tag" type="button">5-Ingredient Recipes</button>
+                    </div>
+                </div>
+
+                <!-- Recent Searches -->
+                <div id="recent-searches" class="mb-xl" style="display:none;">
+                    <div class="flex justify-between items-center mb-md">
+                        <div class="search-suggestion-title mb-0">🕐 Recent Searches</div>
+                        <button class="btn btn-ghost btn-sm" id="clear-recent-btn" style="font-size:0.75rem;">Clear All</button>
+                    </div>
+                    <div class="suggestion-tags" id="recent-searches-list">
+                        <!-- JS populates -->
+                    </div>
+                </div>
+
+                <!-- Search Results -->
+                <div id="search-results-wrapper" style="display:none;">
+                    <p class="search-results-count" id="results-count" aria-live="polite">0 results</p>
+
+                    <!-- Sort Options -->
+                    <div class="flex justify-between items-center mb-md flex-wrap gap-sm">
+                        <div class="filter-tabs" role="tablist" aria-label="Sort search results" style="padding:0;">
+                            <button class="filter-tab active" data-sort="relevance" role="tab">Relevance</button>
+                            <button class="filter-tab" data-sort="rating" role="tab">Highest Rated</button>
+                            <button class="filter-tab" data-sort="time" role="tab">Quickest</button>
+                            <button class="filter-tab" data-sort="calories" role="tab">Low Calorie</button>
+                        </div>
+                    </div>
+
+                    <!-- Results Grid -->
+                    <div class="recipe-grid" id="search-results" role="feed" aria-label="Search results">
+                        <!-- JS populates -->
+                    </div>
+
+                    <!-- No Results State -->
+                    <div class="empty-state" id="no-results" style="display:none;">
+                        <div class="empty-state-icon">🔍</div>
+                        <h2 class="empty-state-title">No recipes found</h2>
+                        <p class="empty-state-desc">We couldn't find any recipes matching your search. Try different keywords or browse our categories.</p>
+                        <div class="flex gap-md" style="justify-content:center;flex-wrap:wrap;">
+                            <a href="recipes.html" class="btn btn-primary">Browse All Recipes</a>
+                            <a href="categories.html" class="btn btn-outline-dark">View Categories</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Popular Categories Section -->
+        <section class="section" aria-labelledby="pop-cat-heading" style="background:var(--white);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="pop-cat-heading" class="section-title">📂 Popular Categories</h2>
+                    <a href="categories.html" class="view-all">View All →</a>
+                </div>
+                <div class="categories-grid">
+                    <a href="categories.html#breakfast" class="category-grid-card" aria-label="Breakfast recipes">
+                        <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&h=400&fit=crop" alt="Breakfast spread with eggs and toast" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">Breakfast</h3>
+                            <span class="category-grid-count">45 recipes</span>
+                        </div>
+                    </a>
+                    <a href="categories.html#dinner" class="category-grid-card" aria-label="Dinner recipes">
+                        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&h=400&fit=crop" alt="Elegant dinner plate" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">Dinner</h3>
+                            <span class="category-grid-count">89 recipes</span>
+                        </div>
+                    </a>
+                    <a href="categories.html#desserts" class="category-grid-card" aria-label="Dessert recipes">
+                        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=400&fit=crop" alt="Chocolate dessert with berries" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">Desserts</h3>
+                            <span class="category-grid-count">56 recipes</span>
+                        </div>
+                    </a>
+                    <a href="categories.html#seafood" class="category-grid-card" aria-label="Seafood recipes">
+                        <img src="https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=400&h=400&fit=crop" alt="Fresh seafood platter" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">Seafood</h3>
+                            <span class="category-grid-count">51 recipes</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" aria-label="Bottom navigation">
+        <a href="../index.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            <span>Home</span>
+        </a>
+        <a href="search.html" class="bottom-nav-item active" aria-current="page">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Search</span>
+        </a>
+        <a href="favorites.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>Favorites</span>
+        </a>
+        <a href="meal-planner.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Planner</span>
+        </a>
+        <a href="profile.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🍳</span>
+                        <span class="logo-text">RecipeHub</span>
+                    </div>
+                    <p class="footer-desc">Your ultimate cooking companion. Discover recipes, plan meals, and cook with confidence.</p>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="recipes.html">Recipes</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="meal-planner.html">Meal Planner</a></li>
+                        <li><a href="shopping-list.html">Shopping List</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Community</h3>
+                    <ul class="footer-links">
+                        <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="favorites.html">My Favorites</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Connect</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📸</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="YouTube">🎬</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RecipeHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Search page-specific enhancements
+        (function () {
+            const searchInput = document.getElementById('search-input');
+            const clearBtn = document.getElementById('clear-search-btn');
+            const suggestions = document.getElementById('search-suggestions');
+            const resultsWrapper = document.getElementById('search-results-wrapper');
+            const noResults = document.getElementById('no-results');
+            const searchResults = document.getElementById('search-results');
+            const recentSection = document.getElementById('recent-searches');
+            const recentList = document.getElementById('recent-searches-list');
+
+            if (!searchInput) return;
+
+            // Recent searches management
+            function getRecent() {
+                try {
+                    return JSON.parse(localStorage.getItem('recipehub_recent_searches') || '[]');
+                } catch { return []; }
+            }
+
+            function saveRecent(term) {
+                let recent = getRecent();
+                recent = recent.filter(t => t.toLowerCase() !== term.toLowerCase());
+                recent.unshift(term);
+                recent = recent.slice(0, 8);
+                localStorage.setItem('recipehub_recent_searches', JSON.stringify(recent));
+                renderRecent();
+            }
+
+            function renderRecent() {
+                const recent = getRecent();
+                if (!recentSection || !recentList) return;
+
+                if (recent.length === 0) {
+                    recentSection.style.display = 'none';
+                    return;
+                }
+
+                recentSection.style.display = '';
+                recentList.innerHTML = recent.map(term =>
+                    `<button class="suggestion-tag recent-search-item" type="button">🕐 ${term}</button>`
+                ).join('');
+
+                // Click to search
+                document.querySelectorAll('.recent-search-item').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const term = btn.textContent.replace('🕐 ', '').trim();
+                        searchInput.value = term;
+                        searchInput.dispatchEvent(new Event('input'));
+                    });
+                });
+            }
+
+            // Clear recent searches
+            const clearRecentBtn = document.getElementById('clear-recent-btn');
+            if (clearRecentBtn) {
+                clearRecentBtn.addEventListener('click', () => {
+                    localStorage.removeItem('recipehub_recent_searches');
+                    renderRecent();
+                    const toast = document.querySelector('.toast');
+                    if (toast) {
+                        toast.textContent = 'Recent searches cleared';
+                        toast.className = 'toast show';
+                        setTimeout(() => toast.classList.remove('show'), 2000);
+                    }
+                });
+            }
+
+            // Show/hide clear button
+            searchInput.addEventListener('input', () => {
+                if (searchInput.value.trim()) {
+                    if (clearBtn) clearBtn.style.display = '';
+                    if (suggestions) suggestions.style.display = 'none';
+                    if (recentSection) recentSection.style.display = 'none';
+                    if (resultsWrapper) resultsWrapper.style.display = '';
+                } else {
+                    if (clearBtn) clearBtn.style.display = 'none';
+                    if (suggestions) suggestions.style.display = '';
+                    if (resultsWrapper) resultsWrapper.style.display = 'none';
+                    renderRecent();
+                }
+            });
+
+            // Clear button
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    searchInput.value = '';
+                    searchInput.dispatchEvent(new Event('input'));
+                    searchInput.focus();
+                });
+            }
+
+            // Save search term on Enter
+            searchInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' && searchInput.value.trim()) {
+                    saveRecent(searchInput.value.trim());
+                }
+            });
+
+            // Toggle advanced filters
+            const toggleFiltersBtn = document.getElementById('toggle-filters-btn');
+            const advancedFilters = document.getElementById('advanced-filters');
+
+            if (toggleFiltersBtn && advancedFilters) {
+                toggleFiltersBtn.addEventListener('click', () => {
+                    const isHidden = advancedFilters.style.display === 'none';
+                    advancedFilters.style.display = isHidden ? '' : 'none';
+                    toggleFiltersBtn.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+                });
+            }
+
+            // Apply filters button
+            const applyFiltersBtn = document.getElementById('apply-filters-btn');
+            if (applyFiltersBtn) {
+                applyFiltersBtn.addEventListener('click', () => {
+                    const cuisine = document.getElementById('filter-cuisine').value;
+                    const difficulty = document.getElementById('filter-difficulty').value;
+                    const time = document.getElementById('filter-time').value;
+                    const calories = document.getElementById('filter-calories').value;
+
+                    let filterParts = [];
+                    if (cuisine) filterParts.push(cuisine);
+                    if (difficulty) filterParts.push(difficulty);
+                    if (time) filterParts.push('under ' + time + ' min');
+                    if (calories) filterParts.push('under ' + calories + ' cal');
+
+                    if (filterParts.length > 0) {
+                        searchInput.value = filterParts.join(' ');
+                        searchInput.dispatchEvent(new Event('input'));
+                    }
+
+                    // Close filters panel
+                    if (advancedFilters) advancedFilters.style.display = 'none';
+                    if (toggleFiltersBtn) toggleFiltersBtn.setAttribute('aria-expanded', 'false');
+
+                    const toast = document.querySelector('.toast');
+                    if (toast) {
+                        toast.textContent = 'Filters applied ✓';
+                        toast.className = 'toast success show';
+                        setTimeout(() => toast.classList.remove('show'), 2000);
+                    }
+                });
+            }
+
+            // Reset filters
+            const resetFiltersBtn = document.getElementById('reset-filters-btn');
+            if (resetFiltersBtn) {
+                resetFiltersBtn.addEventListener('click', () => {
+                    document.getElementById('filter-cuisine').value = '';
+                    document.getElementById('filter-difficulty').value = '';
+                    document.getElementById('filter-time').value = '';
+                    document.getElementById('filter-calories').value = '';
+
+                    searchInput.value = '';
+                    searchInput.dispatchEvent(new Event('input'));
+                    searchInput.focus();
+                });
+            }
+
+            // Sort tabs
+            const sortTabs = document.querySelectorAll('[data-sort]');
+            sortTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    sortTabs.forEach(t => {
+                        t.classList.remove('active');
+                        t.setAttribute('aria-selected', 'false');
+                    });
+                    tab.classList.add('active');
+                    tab.setAttribute('aria-selected', 'true');
+
+                    const sortType = tab.dataset.sort;
+                    const cards = Array.from(searchResults.querySelectorAll('.recipe-card'));
+
+                    cards.sort((a, b) => {
+                        if (sortType === 'rating') {
+                            const rA = parseFloat(a.querySelector('.recipe-rating')?.textContent.replace('⭐ ', '') || '0');
+                            const rB = parseFloat(b.querySelector('.recipe-rating')?.textContent.replace('⭐ ', '') || '0');
+                            return rB - rA;
+                        }
+                        if (sortType === 'time') {
+                            const tA = parseInt(a.querySelector('.recipe-info span')?.textContent.replace(/\D/g, '') || '999');
+                            const tB = parseInt(b.querySelector('.recipe-info span')?.textContent.replace(/\D/g, '') || '999');
+                            return tA - tB;
+                        }
+                        if (sortType === 'calories') {
+                            return 0; // Keep default order for now
+                        }
+                        return 0;
+                    });
+
+                    cards.forEach(card => searchResults.appendChild(card));
+                });
+            });
+
+            // Check URL params on load
+            const urlParams = new URLSearchParams(window.location.search);
+            const queryParam = urlParams.get('q');
+            if (queryParam) {
+                searchInput.value = queryParam;
+                setTimeout(() => {
+                    searchInput.dispatchEvent(new Event('input'));
+                    saveRecent(queryParam);
+                }, 100);
+            }
+
+            // Initial render of recent searches
+            renderRecent();
+
+        })();
+    </script>
+</body>
+</html>

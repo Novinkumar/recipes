@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your saved favorite recipes on RecipeHub. Quick access to the recipes you love most.">
+    <title>My Favorites — RecipeHub</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍳</text></svg>">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header-container">
+            <a href="../index.html" class="logo" aria-label="RecipeHub Home">
+                <span class="logo-icon">🍳</span>
+                <span class="logo-text">RecipeHub</span>
+            </a>
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <ul class="desktop-nav-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="recipes.html">Recipes</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="meal-planner.html">Meal Planner</a></li>
+                    <li><a href="search.html">Search</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobile-overlay" aria-hidden="true"></div>
+    <nav class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
+        <div class="mobile-menu-header">
+            <span class="logo-icon">🍳</span>
+            <span class="logo-text">RecipeHub</span>
+            <button class="mobile-menu-close" id="mobile-close" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="../index.html"><span class="menu-icon">🏠</span> Home</a></li>
+            <li><a href="recipes.html"><span class="menu-icon">📖</span> Recipes</a></li>
+            <li><a href="categories.html"><span class="menu-icon">📂</span> Categories</a></li>
+            <li><a href="favorites.html" class="active"><span class="menu-icon">❤️</span> Favorites</a></li>
+            <li><a href="meal-planner.html"><span class="menu-icon">📅</span> Meal Planner</a></li>
+            <li><a href="shopping-list.html"><span class="menu-icon">🛒</span> Shopping List</a></li>
+            <li><a href="search.html"><span class="menu-icon">🔍</span> Search</a></li>
+            <li><a href="submit-recipe.html"><span class="menu-icon">✍️</span> Submit Recipe</a></li>
+            <li><a href="profile.html"><span class="menu-icon">👤</span> Profile</a></li>
+            <li><a href="about.html"><span class="menu-icon">ℹ️</span> About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- Page Header -->
+        <section class="page-header" aria-labelledby="page-title">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span aria-current="page">Favorites</span>
+                </nav>
+                <h1 id="page-title" class="page-header-title">My Favorites ❤️</h1>
+                <p class="page-header-subtitle">Your collection of saved recipes — all in one place.</p>
+            </div>
+        </section>
+
+        <!-- Favorites Content -->
+        <section class="section" aria-labelledby="favorites-section-title">
+            <div class="container">
+
+                <!-- Stats & Actions Bar -->
+                <div class="flex justify-between items-center mb-lg flex-wrap gap-md">
+                    <div>
+                        <h2 id="favorites-section-title" class="section-title mb-0">Saved Recipes</h2>
+                        <p class="search-results-count" id="favorites-count" aria-live="polite">0 recipes</p>
+                    </div>
+                    <div class="flex gap-sm">
+                        <button class="btn btn-outline-dark btn-sm" id="sort-favorites-btn" aria-label="Sort favorites">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5h10"/><path d="M11 9h7"/><path d="M11 13h4"/><path d="m3 17 3 3 3-3"/><path d="M6 18V4"/></svg>
+                            Sort
+                        </button>
+                        <button class="btn btn-outline-dark btn-sm" id="clear-all-favorites-btn" aria-label="Clear all favorites">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                            Clear All
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Filter Tabs for Favorites -->
+                <div class="filter-tabs mb-lg" role="tablist" aria-label="Filter favorites by category">
+                    <button class="filter-tab active" data-fav-filter="all" role="tab" aria-selected="true">All</button>
+                    <button class="filter-tab" data-fav-filter="breakfast" role="tab" aria-selected="false">🥞 Breakfast</button>
+                    <button class="filter-tab" data-fav-filter="italian" role="tab" aria-selected="false">🍝 Italian</button>
+                    <button class="filter-tab" data-fav-filter="asian" role="tab" aria-selected="false">🍜 Asian</button>
+                    <button class="filter-tab" data-fav-filter="seafood" role="tab" aria-selected="false">🦐 Seafood</button>
+                    <button class="filter-tab" data-fav-filter="desserts" role="tab" aria-selected="false">🍰 Desserts</button>
+                </div>
+
+                <!-- Favorites Grid (JS Rendered) -->
+                <div class="recipe-grid" id="favorites-container" role="feed" aria-label="Your favorite recipes">
+                    <!-- JavaScript will populate this dynamically -->
+                </div>
+
+                <!-- Empty State -->
+                <div class="empty-state" id="favorites-empty">
+                    <div class="empty-state-icon">💔</div>
+                    <h2 class="empty-state-title">No favorites yet</h2>
+                    <p class="empty-state-desc">Start exploring recipes and tap the heart icon to save your favorites here. They'll be waiting for you whenever you're ready to cook!</p>
+                    <a href="recipes.html" class="btn btn-primary btn-lg">Explore Recipes</a>
+                </div>
+
+                <!-- No-JS Fallback -->
+                <noscript>
+                    <div class="empty-state">
+                        <div class="empty-state-icon">⚠️</div>
+                        <h2 class="empty-state-title">JavaScript Required</h2>
+                        <p class="empty-state-desc">This page requires JavaScript to display your saved favorites. Please enable JavaScript in your browser settings.</p>
+                        <a href="recipes.html" class="btn btn-primary">Browse All Recipes</a>
+                    </div>
+                </noscript>
+
+            </div>
+        </section>
+
+        <!-- Suggested Recipes Section -->
+        <section class="section" aria-labelledby="suggested-heading" style="background: var(--white);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="suggested-heading" class="section-title">✨ You Might Like These</h2>
+                    <a href="recipes.html" class="view-all">View All →</a>
+                </div>
+                <div class="recipe-grid">
+                    <!-- Suggested Recipe 1 -->
+                    <article class="recipe-card" tabindex="0">
+                        <a href="recipe-detail.html?id=2" class="recipe-card-link" aria-label="Classic Margherita Pizza, 40 minutes, 4.9 stars">
+                            <div class="recipe-card-image">
+                                <img src="https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=400&h=300&fit=crop" alt="Classic Margherita Pizza with fresh basil and mozzarella" loading="lazy" width="400" height="300">
+                                <span class="recipe-badge badge-popular">Popular</span>
+                                <button class="favorite-btn" aria-label="Add to favorites" data-recipe-id="2">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </button>
+                            </div>
+                            <div class="recipe-card-body">
+                                <div class="recipe-meta">
+                                    <span class="recipe-category">Italian</span>
+                                    <span class="recipe-rating">⭐ 4.9</span>
+                                </div>
+                                <h3 class="recipe-card-title">Classic Margherita Pizza</h3>
+                                <div class="recipe-info">
+                                    <span>⏱️ 40 min</span>
+                                    <span>👤 2 servings</span>
+                                    <span>🔥 Medium</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Suggested Recipe 2 -->
+                    <article class="recipe-card" tabindex="0">
+                        <a href="recipe-detail.html?id=5" class="recipe-card-link" aria-label="Homemade Pasta Carbonara, 30 minutes, 4.9 stars">
+                            <div class="recipe-card-image">
+                                <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&h=300&fit=crop" alt="Creamy pasta carbonara with pecorino" loading="lazy" width="400" height="300">
+                                <span class="recipe-badge badge-trending">Trending</span>
+                                <button class="favorite-btn" aria-label="Add to favorites" data-recipe-id="5">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </button>
+                            </div>
+                            <div class="recipe-card-body">
+                                <div class="recipe-meta">
+                                    <span class="recipe-category">Italian</span>
+                                    <span class="recipe-rating">⭐ 4.9</span>
+                                </div>
+                                <h3 class="recipe-card-title">Homemade Pasta Carbonara</h3>
+                                <div class="recipe-info">
+                                    <span>⏱️ 30 min</span>
+                                    <span>👤 4 servings</span>
+                                    <span>🔥 Medium</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Suggested Recipe 3 -->
+                    <article class="recipe-card" tabindex="0">
+                        <a href="recipe-detail.html?id=7" class="recipe-card-link" aria-label="Grilled Salmon Teriyaki, 20 minutes, 4.8 stars">
+                            <div class="recipe-card-image">
+                                <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=400&h=300&fit=crop" alt="Teriyaki glazed salmon fillet" loading="lazy" width="400" height="300">
+                                <span class="recipe-badge badge-new">New</span>
+                                <button class="favorite-btn" aria-label="Add to favorites" data-recipe-id="7">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </button>
+                            </div>
+                            <div class="recipe-card-body">
+                                <div class="recipe-meta">
+                                    <span class="recipe-category">Seafood</span>
+                                    <span class="recipe-rating">⭐ 4.8</span>
+                                </div>
+                                <h3 class="recipe-card-title">Grilled Salmon Teriyaki</h3>
+                                <div class="recipe-info">
+                                    <span>⏱️ 20 min</span>
+                                    <span>👤 2 servings</span>
+                                    <span>🔥 Easy</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Suggested Recipe 4 -->
+                    <article class="recipe-card" tabindex="0">
+                        <a href="recipe-detail.html?id=6" class="recipe-card-link" aria-label="Berry Smoothie Bowl, 10 minutes, 4.5 stars">
+                            <div class="recipe-card-image">
+                                <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?w=400&h=300&fit=crop" alt="Berry smoothie bowl with granola toppings" loading="lazy" width="400" height="300">
+                                <span class="recipe-badge badge-quick">Quick</span>
+                                <button class="favorite-btn" aria-label="Add to favorites" data-recipe-id="6">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </button>
+                            </div>
+                            <div class="recipe-card-body">
+                                <div class="recipe-meta">
+                                    <span class="recipe-category">Breakfast</span>
+                                    <span class="recipe-rating">⭐ 4.5</span>
+                                </div>
+                                <h3 class="recipe-card-title">Berry Smoothie Bowl</h3>
+                                <div class="recipe-info">
+                                    <span>⏱️ 10 min</span>
+                                    <span>👤 1 serving</span>
+                                    <span>🔥 Easy</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="section" aria-labelledby="actions-heading">
+            <div class="container">
+                <h2 id="actions-heading" class="section-title text-center mb-lg">What Would You Like To Do?</h2>
+                <div class="steps-grid" style="max-width:800px;margin:0 auto;">
+                    <a href="meal-planner.html" class="step-card" style="text-decoration:none;">
+                        <div class="step-icon">📅</div>
+                        <h3 class="step-title">Plan Meals</h3>
+                        <p class="step-desc">Add your favorites to a weekly meal plan for easy organization.</p>
+                    </a>
+                    <a href="shopping-list.html" class="step-card" style="text-decoration:none;">
+                        <div class="step-icon">🛒</div>
+                        <h3 class="step-title">Shopping List</h3>
+                        <p class="step-desc">Generate a shopping list from your favorite recipes' ingredients.</p>
+                    </a>
+                    <a href="submit-recipe.html" class="step-card" style="text-decoration:none;">
+                        <div class="step-icon">✍️</div>
+                        <h3 class="step-title">Submit Recipe</h3>
+                        <p class="step-desc">Share your own creation with the RecipeHub community.</p>
+                    </a>
+                    <a href="search.html" class="step-card" style="text-decoration:none;">
+                        <div class="step-icon">🔍</div>
+                        <h3 class="step-title">Discover More</h3>
+                        <p class="step-desc">Search for new recipes by ingredient, cuisine, or cooking time.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" aria-label="Bottom navigation">
+        <a href="../index.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            <span>Home</span>
+        </a>
+        <a href="search.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Search</span>
+        </a>
+        <a href="favorites.html" class="bottom-nav-item active" aria-current="page">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>Favorites</span>
+        </a>
+        <a href="meal-planner.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Planner</span>
+        </a>
+        <a href="profile.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🍳</span>
+                        <span class="logo-text">RecipeHub</span>
+                    </div>
+                    <p class="footer-desc">Your ultimate cooking companion. Discover recipes, plan meals, and cook with confidence.</p>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="recipes.html">Recipes</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="meal-planner.html">Meal Planner</a></li>
+                        <li><a href="shopping-list.html">Shopping List</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Community</h3>
+                    <ul class="footer-links">
+                        <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="favorites.html">My Favorites</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Connect</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📸</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="YouTube">🎬</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RecipeHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Favorites page specific logic
+        (function () {
+            // Clear All Favorites
+            const clearAllBtn = document.getElementById('clear-all-favorites-btn');
+            if (clearAllBtn) {
+                clearAllBtn.addEventListener('click', () => {
+                    const favs = JSON.parse(localStorage.getItem('recipehub_favorites') || '[]');
+                    if (favs.length === 0) {
+                        const toast = document.querySelector('.toast');
+                        if (toast) {
+                            toast.textContent = 'No favorites to clear';
+                            toast.className = 'toast show';
+                            setTimeout(() => toast.classList.remove('show'), 3000);
+                        }
+                        return;
+                    }
+
+                    // Confirm dialog
+                    const confirmed = confirm('Are you sure you want to remove all favorites?');
+                    if (!confirmed) return;
+
+                    localStorage.setItem('recipehub_favorites', '[]');
+
+                    // Re-render
+                    const container = document.getElementById('favorites-container');
+                    const emptyState = document.getElementById('favorites-empty');
+                    const countEl = document.getElementById('favorites-count');
+
+                    if (container) container.innerHTML = '';
+                    if (emptyState) emptyState.classList.remove('hidden');
+                    if (countEl) countEl.textContent = '0 recipes';
+
+                    // Update all favorite buttons on page
+                    document.querySelectorAll('.favorite-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-label', 'Add to favorites');
+                    });
+
+                    const toast = document.querySelector('.toast');
+                    if (toast) {
+                        toast.textContent = 'All favorites cleared';
+                        toast.className = 'toast show';
+                        setTimeout(() => toast.classList.remove('show'), 3000);
+                    }
+                });
+            }
+
+            // Sort Favorites
+            const sortBtn = document.getElementById('sort-favorites-btn');
+            if (sortBtn) {
+                let sortOrder = 'default';
+                sortBtn.addEventListener('click', () => {
+                    sortOrder = sortOrder === 'default' ? 'alpha' : sortOrder === 'alpha' ? 'rating' : 'default';
+
+                    const labels = {
+                        'default': 'Sort: Default',
+                        'alpha': 'Sort: A-Z',
+                        'rating': 'Sort: Rating'
+                    };
+
+                    sortBtn.innerHTML = `
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 5h10"/><path d="M11 9h7"/><path d="M11 13h4"/><path d="m3 17 3 3 3-3"/><path d="M6 18V4"/></svg>
+                        ${labels[sortOrder]}
+                    `;
+
+                    const toast = document.querySelector('.toast');
+                    if (toast) {
+                        toast.textContent = `Sorted by ${sortOrder === 'default' ? 'default order' : sortOrder === 'alpha' ? 'name (A-Z)' : 'highest rating'}`;
+                        toast.className = 'toast show';
+                        setTimeout(() => toast.classList.remove('show'), 2000);
+                    }
+                });
+            }
+
+            // Favorites filter tabs
+            const filterTabs = document.querySelectorAll('[data-fav-filter]');
+            filterTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    filterTabs.forEach(t => {
+                        t.classList.remove('active');
+                        t.setAttribute('aria-selected', 'false');
+                    });
+                    tab.classList.add('active');
+                    tab.setAttribute('aria-selected', 'true');
+
+                    const filter = tab.dataset.favFilter;
+                    const cards = document.querySelectorAll('#favorites-container .recipe-card');
+
+                    cards.forEach(card => {
+                        if (filter === 'all') {
+                            card.style.display = '';
+                        } else {
+                            const category = card.querySelector('.recipe-category');
+                            if (category && category.textContent.toLowerCase() === filter) {
+                                card.style.display = '';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        })();
+    </script>
+</body>
+</html>

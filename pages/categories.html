@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse recipe categories on RecipeHub. Find recipes by meal type, cuisine, and dietary preference.">
+    <title>Categories — RecipeHub</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍳</text></svg>">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header-container">
+            <a href="../index.html" class="logo" aria-label="RecipeHub Home">
+                <span class="logo-icon">🍳</span>
+                <span class="logo-text">RecipeHub</span>
+            </a>
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <ul class="desktop-nav-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="recipes.html">Recipes</a></li>
+                    <li><a href="categories.html" class="active">Categories</a></li>
+                    <li><a href="meal-planner.html">Meal Planner</a></li>
+                    <li><a href="search.html">Search</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobile-overlay" aria-hidden="true"></div>
+    <nav class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
+        <div class="mobile-menu-header">
+            <span class="logo-icon">🍳</span>
+            <span class="logo-text">RecipeHub</span>
+            <button class="mobile-menu-close" id="mobile-close" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="../index.html"><span class="menu-icon">🏠</span> Home</a></li>
+            <li><a href="recipes.html"><span class="menu-icon">📖</span> Recipes</a></li>
+            <li><a href="categories.html" class="active"><span class="menu-icon">📂</span> Categories</a></li>
+            <li><a href="favorites.html"><span class="menu-icon">❤️</span> Favorites</a></li>
+            <li><a href="meal-planner.html"><span class="menu-icon">📅</span> Meal Planner</a></li>
+            <li><a href="shopping-list.html"><span class="menu-icon">🛒</span> Shopping List</a></li>
+            <li><a href="search.html"><span class="menu-icon">🔍</span> Search</a></li>
+            <li><a href="submit-recipe.html"><span class="menu-icon">✍️</span> Submit Recipe</a></li>
+            <li><a href="profile.html"><span class="menu-icon">👤</span> Profile</a></li>
+            <li><a href="about.html"><span class="menu-icon">ℹ️</span> About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+
+        <!-- Page Header -->
+        <section class="page-header" aria-labelledby="page-title">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span aria-current="page">Categories</span>
+                </nav>
+                <h1 id="page-title" class="page-header-title">Recipe Categories</h1>
+                <p class="page-header-subtitle">Explore recipes organized by meal type, cuisine, dietary needs, and more.</p>
+            </div>
+        </section>
+
+        <!-- Meal Type Categories -->
+        <section class="section" aria-labelledby="meal-type-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="meal-type-heading" class="section-title">🍽️ By Meal Type</h2>
+                </div>
+                <div class="categories-grid">
+                    <!-- Breakfast -->
+                    <a href="recipes.html?category=breakfast" class="category-grid-card" id="breakfast" aria-label="Breakfast - 45 recipes">
+                        <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=400&h=400&fit=crop" alt="Breakfast spread with eggs, toast, and fresh fruit" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">Breakfast</h3>
+                            <span class="category-grid-count">45 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Lunch -->
+                    <a href="recipes.html?category=lunch" class="category-grid-card" id="lunch" aria-label="Lunch - 62 recipes">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=400&fit=crop" alt="Fresh healthy lunch bowl with vegetables" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">Lunch</h3>
+                            <span class="category-grid-count">62 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Dinner -->
+                    <a href="recipes.html?category=dinner" class="category-grid-card" id="dinner" aria-label="Dinner - 89 recipes">
+                        <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=400&h=400&fit=crop" alt="Elegant dinner plate with steak and vegetables" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">Dinner</h3>
+                            <span class="category-grid-count">89 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Snacks -->
+                    <a href="recipes.html?category=snacks" class="category-grid-card" id="snacks" aria-label="Snacks - 34 recipes">
+                        <img src="https://images.unsplash.com/photo-1599490659213-e2b9527bd087?w=400&h=400&fit=crop" alt="Assorted snacks and appetizers on a board" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">Snacks</h3>
+                            <span class="category-grid-count">34 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Desserts -->
+                    <a href="recipes.html?category=desserts" class="category-grid-card" id="desserts" aria-label="Desserts - 56 recipes">
+                        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400&h=400&fit=crop" alt="Decadent chocolate dessert with berries" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">Desserts</h3>
+                            <span class="category-grid-count">56 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Drinks -->
+                    <a href="recipes.html?category=drinks" class="category-grid-card" id="drinks" aria-label="Drinks - 28 recipes">
+                        <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&h=400&fit=crop" alt="Colorful smoothies and fresh juices" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">Drinks</h3>
+                            <span class="category-grid-count">28 recipes</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cuisine Categories -->
+        <section class="section" aria-labelledby="cuisine-heading" style="background: var(--white);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="cuisine-heading" class="section-title">🌍 By Cuisine</h2>
+                </div>
+                <div class="categories-grid">
+                    <!-- Italian -->
+                    <a href="recipes.html?category=italian" class="category-grid-card" aria-label="Italian - 72 recipes">
+                        <img src="https://images.unsplash.com/photo-1498579150354-977475b7ea0b?w=400&h=400&fit=crop" alt="Italian pasta dish with fresh ingredients" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🇮🇹 Italian</h3>
+                            <span class="category-grid-count">72 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Asian -->
+                    <a href="recipes.html?category=asian" class="category-grid-card" aria-label="Asian - 65 recipes">
+                        <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=400&h=400&fit=crop" alt="Asian stir fry with noodles" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🍜 Asian</h3>
+                            <span class="category-grid-count">65 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Mexican -->
+                    <a href="recipes.html?category=mexican" class="category-grid-card" aria-label="Mexican - 48 recipes">
+                        <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=400&fit=crop" alt="Mexican tacos with fresh toppings" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🇲🇽 Mexican</h3>
+                            <span class="category-grid-count">48 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Mediterranean -->
+                    <a href="recipes.html?category=mediterranean" class="category-grid-card" aria-label="Mediterranean - 54 recipes">
+                        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&h=400&fit=crop" alt="Mediterranean salad with feta and olives" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🫒 Mediterranean</h3>
+                            <span class="category-grid-count">54 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Indian -->
+                    <a href="recipes.html?category=indian" class="category-grid-card" aria-label="Indian - 41 recipes">
+                        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=400&h=400&fit=crop" alt="Indian curry with naan bread and spices" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🇮🇳 Indian</h3>
+                            <span class="category-grid-count">41 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- American -->
+                    <a href="recipes.html?category=american" class="category-grid-card" aria-label="American - 58 recipes">
+                        <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=400&fit=crop" alt="Classic American burger with fries" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🇺🇸 American</h3>
+                            <span class="category-grid-count">58 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- French -->
+                    <a href="recipes.html?category=french" class="category-grid-card" aria-label="French - 36 recipes">
+                        <img src="https://images.unsplash.com/photo-1608855238293-a8853e7f7c98?w=400&h=400&fit=crop" alt="French pastries and croissants" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🇫🇷 French</h3>
+                            <span class="category-grid-count">36 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Japanese -->
+                    <a href="recipes.html?category=japanese" class="category-grid-card" aria-label="Japanese - 39 recipes">
+                        <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?w=400&h=400&fit=crop" alt="Japanese sushi platter" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🇯🇵 Japanese</h3>
+                            <span class="category-grid-count">39 recipes</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dietary Categories -->
+        <section class="section" aria-labelledby="dietary-heading">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="dietary-heading" class="section-title">🥗 By Dietary Preference</h2>
+                </div>
+                <div class="categories-grid">
+                    <!-- Vegan -->
+                    <a href="recipes.html?category=vegan" class="category-grid-card" id="vegan" aria-label="Vegan - 38 recipes">
+                        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=400&fit=crop" alt="Colorful vegan bowl with fresh vegetables" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🌱 Vegan</h3>
+                            <span class="category-grid-count">38 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Vegetarian -->
+                    <a href="recipes.html?category=vegetarian" class="category-grid-card" aria-label="Vegetarian - 52 recipes">
+                        <img src="https://images.unsplash.com/photo-1543362906-acfc16c67564?w=400&h=400&fit=crop" alt="Vegetarian pasta with fresh vegetables" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🥚 Vegetarian</h3>
+                            <span class="category-grid-count">52 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Gluten Free -->
+                    <a href="recipes.html?category=gluten-free" class="category-grid-card" aria-label="Gluten Free - 29 recipes">
+                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=400&fit=crop" alt="Gluten-free grain bowl" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🌾 Gluten Free</h3>
+                            <span class="category-grid-count">29 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Keto -->
+                    <a href="recipes.html?category=keto" class="category-grid-card" aria-label="Keto - 33 recipes">
+                        <img src="https://images.unsplash.com/photo-1432139509613-5c4255a3d826?w=400&h=400&fit=crop" alt="Keto-friendly avocado and salmon plate" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🥑 Keto</h3>
+                            <span class="category-grid-count">33 recipes</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Protein / Ingredient Categories -->
+        <section class="section" aria-labelledby="ingredient-heading" style="background: var(--white);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="ingredient-heading" class="section-title">🥩 By Main Ingredient</h2>
+                </div>
+                <div class="categories-grid">
+                    <!-- Chicken -->
+                    <a href="recipes.html?category=chicken" class="category-grid-card" aria-label="Chicken - 67 recipes">
+                        <img src="https://images.unsplash.com/photo-1598103442097-8b74394b95c6?w=400&h=400&fit=crop" alt="Grilled chicken with herbs" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🍗 Chicken</h3>
+                            <span class="category-grid-count">67 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Beef -->
+                    <a href="recipes.html?category=beef" class="category-grid-card" aria-label="Beef - 43 recipes">
+                        <img src="https://images.unsplash.com/photo-1588168333986-5078d3ae3976?w=400&h=400&fit=crop" alt="Juicy beef steak on grill" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🥩 Beef</h3>
+                            <span class="category-grid-count">43 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Seafood -->
+                    <a href="recipes.html?category=seafood" class="category-grid-card" id="seafood" aria-label="Seafood - 51 recipes">
+                        <img src="https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=400&h=400&fit=crop" alt="Fresh seafood platter with shrimp and fish" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🦐 Seafood</h3>
+                            <span class="category-grid-count">51 recipes</span>
+                        </div>
+                    </a>
+
+                    <!-- Pasta -->
+                    <a href="recipes.html?category=pasta" class="category-grid-card" aria-label="Pasta - 44 recipes">
+                        <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&h=400&fit=crop" alt="Various pasta dishes" loading="lazy" width="400" height="400">
+                        <div class="category-grid-overlay"></div>
+                        <div class="category-grid-info">
+                            <h3 class="category-grid-name">🍝 Pasta</h3>
+                            <span class="category-grid-count">44 recipes</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Browse Chips -->
+        <section class="section" aria-labelledby="quick-browse-heading">
+            <div class="container">
+                <h2 id="quick-browse-heading" class="section-title mb-lg">🏷️ Quick Browse Tags</h2>
+                <div class="suggestion-tags" role="list">
+                    <a href="recipes.html?tag=quick-meals" class="suggestion-tag" role="listitem">⚡ Quick Meals</a>
+                    <a href="recipes.html?tag=one-pot" class="suggestion-tag" role="listitem">🍲 One-Pot</a>
+                    <a href="recipes.html?tag=meal-prep" class="suggestion-tag" role="listitem">📦 Meal Prep</a>
+                    <a href="recipes.html?tag=budget-friendly" class="suggestion-tag" role="listitem">💰 Budget Friendly</a>
+                    <a href="recipes.html?tag=comfort-food" class="suggestion-tag" role="listitem">🛋️ Comfort Food</a>
+                    <a href="recipes.html?tag=healthy" class="suggestion-tag" role="listitem">💪 Healthy</a>
+                    <a href="recipes.html?tag=date-night" class="suggestion-tag" role="listitem">🕯️ Date Night</a>
+                    <a href="recipes.html?tag=kids-friendly" class="suggestion-tag" role="listitem">👶 Kids Friendly</a>
+                    <a href="recipes.html?tag=holiday" class="suggestion-tag" role="listitem">🎄 Holiday</a>
+                    <a href="recipes.html?tag=bbq" class="suggestion-tag" role="listitem">🔥 BBQ & Grilling</a>
+                    <a href="recipes.html?tag=slow-cooker" class="suggestion-tag" role="listitem">🫕 Slow Cooker</a>
+                    <a href="recipes.html?tag=baking" class="suggestion-tag" role="listitem">🧁 Baking</a>
+                    <a href="recipes.html?tag=no-cook" class="suggestion-tag" role="listitem">❄️ No Cook</a>
+                    <a href="recipes.html?tag=high-protein" class="suggestion-tag" role="listitem">🥚 High Protein</a>
+                    <a href="recipes.html?tag=low-carb" class="suggestion-tag" role="listitem">📉 Low Carb</a>
+                    <a href="recipes.html?tag=spicy" class="suggestion-tag" role="listitem">🌶️ Spicy</a>
+                    <a href="recipes.html?tag=soups" class="suggestion-tag" role="listitem">🍜 Soups</a>
+                    <a href="recipes.html?tag=salads" class="suggestion-tag" role="listitem">🥗 Salads</a>
+                    <a href="recipes.html?tag=sandwiches" class="suggestion-tag" role="listitem">🥪 Sandwiches</a>
+                    <a href="recipes.html?tag=smoothies" class="suggestion-tag" role="listitem">🥤 Smoothies</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular This Week -->
+        <section class="section" aria-labelledby="popular-heading" style="background: var(--white);">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="popular-heading" class="section-title">🔥 Popular This Week</h2>
+                    <a href="recipes.html" class="view-all">View All →</a>
+                </div>
+                <div class="recipe-grid">
+                    <!-- Popular Recipe 1 -->
+                    <article class="recipe-card" tabindex="0">
+                        <a href="recipe-detail.html?id=5" class="recipe-card-link" aria-label="Homemade Pasta Carbonara, 30 minutes, 4.9 stars">
+                            <div class="recipe-card-image">
+                                <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=400&h=300&fit=crop" alt="Creamy pasta carbonara with pancetta" loading="lazy" width="400" height="300">
+                                <span class="recipe-badge badge-trending">Trending</span>
+                                <button class="favorite-btn" aria-label="Add to favorites" data-recipe-id="5">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </button>
+                            </div>
+                            <div class="recipe-card-body">
+                                <div class="recipe-meta">
+                                    <span class="recipe-category">Italian</span>
+                                    <span class="recipe-rating">⭐ 4.9</span>
+                                </div>
+                                <h3 class="recipe-card-title">Homemade Pasta Carbonara</h3>
+                                <div class="recipe-info">
+                                    <span>⏱️ 30 min</span>
+                                    <span>👤 4 servings</span>
+                                    <span>🔥 Medium</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Popular Recipe 2 -->
+                    <article class="recipe-card" tabindex="0">
+                        <a href="recipe-detail.html?id=1" class="recipe-card-link" aria-label="Creamy Garlic Tuscan Shrimp, 25 minutes, 4.8 stars">
+                            <div class="recipe-card-image">
+                                <img src="https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?w=400&h=300&fit=crop" alt="Tuscan shrimp in creamy garlic sauce" loading="lazy" width="400" height="300">
+                                <span class="recipe-badge badge-popular">Popular</span>
+                                <button class="favorite-btn" aria-label="Add to favorites" data-recipe-id="1">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </button>
+                            </div>
+                            <div class="recipe-card-body">
+                                <div class="recipe-meta">
+                                    <span class="recipe-category">Seafood</span>
+                                    <span class="recipe-rating">⭐ 4.8</span>
+                                </div>
+                                <h3 class="recipe-card-title">Creamy Garlic Tuscan Shrimp</h3>
+                                <div class="recipe-info">
+                                    <span>⏱️ 25 min</span>
+                                    <span>👤 4 servings</span>
+                                    <span>🔥 Easy</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Popular Recipe 3 -->
+                    <article class="recipe-card" tabindex="0">
+                        <a href="recipe-detail.html?id=3" class="recipe-card-link" aria-label="Thai Green Curry, 35 minutes, 4.7 stars">
+                            <div class="recipe-card-image">
+                                <img src="https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=400&h=300&fit=crop" alt="Thai green curry with vegetables" loading="lazy" width="400" height="300">
+                                <span class="recipe-badge badge-new">New</span>
+                                <button class="favorite-btn" aria-label="Add to favorites" data-recipe-id="3">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </button>
+                            </div>
+                            <div class="recipe-card-body">
+                                <div class="recipe-meta">
+                                    <span class="recipe-category">Asian</span>
+                                    <span class="recipe-rating">⭐ 4.7</span>
+                                </div>
+                                <h3 class="recipe-card-title">Thai Green Curry</h3>
+                                <div class="recipe-info">
+                                    <span>⏱️ 35 min</span>
+                                    <span>👤 3 servings</span>
+                                    <span>🔥 Medium</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!-- Popular Recipe 4 -->
+                    <article class="recipe-card" tabindex="0">
+                        <a href="recipe-detail.html?id=8" class="recipe-card-link" aria-label="Chocolate Lava Cake, 25 minutes, 4.9 stars">
+                            <div class="recipe-card-image">
+                                <img src="https://images.unsplash.com/photo-1624353365286-3f8d62daad51?w=400&h=300&fit=crop" alt="Chocolate lava cake with molten center" loading="lazy" width="400" height="300">
+                                <span class="recipe-badge badge-quick">Fan Fave</span>
+                                <button class="favorite-btn" aria-label="Add to favorites" data-recipe-id="8">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                                </button>
+                            </div>
+                            <div class="recipe-card-body">
+                                <div class="recipe-meta">
+                                    <span class="recipe-category">Desserts</span>
+                                    <span class="recipe-rating">⭐ 4.9</span>
+                                </div>
+                                <h3 class="recipe-card-title">Chocolate Lava Cake</h3>
+                                <div class="recipe-info">
+                                    <span>⏱️ 25 min</span>
+                                    <span>👤 2 servings</span>
+                                    <span>🔥 Medium</span>
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" aria-label="Bottom navigation">
+        <a href="../index.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            <span>Home</span>
+        </a>
+        <a href="search.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Search</span>
+        </a>
+        <a href="favorites.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>Favorites</span>
+        </a>
+        <a href="meal-planner.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Planner</span>
+        </a>
+        <a href="profile.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🍳</span>
+                        <span class="logo-text">RecipeHub</span>
+                    </div>
+                    <p class="footer-desc">Your ultimate cooking companion. Discover recipes, plan meals, and cook with confidence.</p>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="recipes.html">Recipes</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="meal-planner.html">Meal Planner</a></li>
+                        <li><a href="shopping-list.html">Shopping List</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Community</h3>
+                    <ul class="footer-links">
+                        <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="favorites.html">My Favorites</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Connect</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📸</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="YouTube">🎬</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RecipeHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+</body>
+</html>

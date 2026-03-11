@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your RecipeHub profile. View your stats, manage settings, and access your recipes and favorites.">
+    <title>My Profile — RecipeHub</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍳</text></svg>">
+</head>
+<body>
+
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="header-container">
+            <a href="../index.html" class="logo" aria-label="RecipeHub Home">
+                <span class="logo-icon">🍳</span>
+                <span class="logo-text">RecipeHub</span>
+            </a>
+            <nav class="desktop-nav" aria-label="Main navigation">
+                <ul class="desktop-nav-list">
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="recipes.html">Recipes</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="meal-planner.html">Meal Planner</a></li>
+                    <li><a href="search.html">Search</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" id="mobile-overlay" aria-hidden="true"></div>
+    <nav class="mobile-menu" id="mobile-menu" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
+        <div class="mobile-menu-header">
+            <span class="logo-icon">🍳</span>
+            <span class="logo-text">RecipeHub</span>
+            <button class="mobile-menu-close" id="mobile-close" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="../index.html"><span class="menu-icon">🏠</span> Home</a></li>
+            <li><a href="recipes.html"><span class="menu-icon">📖</span> Recipes</a></li>
+            <li><a href="categories.html"><span class="menu-icon">📂</span> Categories</a></li>
+            <li><a href="favorites.html"><span class="menu-icon">❤️</span> Favorites</a></li>
+            <li><a href="meal-planner.html"><span class="menu-icon">📅</span> Meal Planner</a></li>
+            <li><a href="shopping-list.html"><span class="menu-icon">🛒</span> Shopping List</a></li>
+            <li><a href="search.html"><span class="menu-icon">🔍</span> Search</a></li>
+            <li><a href="submit-recipe.html"><span class="menu-icon">✍️</span> Submit Recipe</a></li>
+            <li><a href="profile.html" class="active"><span class="menu-icon">👤</span> Profile</a></li>
+            <li><a href="about.html"><span class="menu-icon">ℹ️</span> About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" id="profile-page">
+
+        <!-- Page Header -->
+        <section class="page-header" aria-labelledby="page-title">
+            <div class="container">
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="../index.html">Home</a>
+                    <span class="breadcrumb-separator">/</span>
+                    <span aria-current="page">Profile</span>
+                </nav>
+                <h1 id="page-title" class="page-header-title">My Profile</h1>
+                <p class="page-header-subtitle">Manage your account, preferences, and cooking activity.</p>
+            </div>
+        </section>
+
+        <!-- Profile Content -->
+        <section class="section" aria-labelledby="profile-section-title">
+            <div class="container" style="max-width:700px;">
+
+                <h2 id="profile-section-title" class="sr-only">Profile Information</h2>
+
+                <!-- Profile Card -->
+                <div class="profile-header-card">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&h=200&fit=crop&crop=face" alt="User profile avatar" class="profile-avatar" width="96" height="96" id="profile-avatar-img">
+
+                    <h2 class="profile-name" id="profile-display-name">Alex Johnson</h2>
+                    <p class="profile-bio" id="profile-display-bio">Home cook & food enthusiast 🍳 | Lover of Italian cuisine | Based in New York</p>
+
+                    <div class="profile-stats-row">
+                        <div class="profile-stat">
+                            <span class="profile-stat-number" id="profile-fav-count">0</span>
+                            <span class="profile-stat-label">Favorites</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="profile-stat-number" id="profile-recipe-count">3</span>
+                            <span class="profile-stat-label">Recipes</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="profile-stat-number" id="profile-shopping-count">0</span>
+                            <span class="profile-stat-label">Shopping Items</span>
+                        </div>
+                        <div class="profile-stat">
+                            <span class="profile-stat-number" id="profile-plans-count">0</span>
+                            <span class="profile-stat-label">Meal Plans</span>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-sm mt-lg" style="justify-content:center;flex-wrap:wrap;">
+                        <button class="btn btn-primary btn-sm" id="edit-profile-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                            Edit Profile
+                        </button>
+                        <button class="btn btn-outline-dark btn-sm" id="share-profile-btn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16,6 12,2 8,6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                            Share
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tabs: Activity / Settings -->
+                <div class="tabs-header" role="tablist" aria-label="Profile sections">
+                    <button class="tab-btn active" data-tab="tab-activity" role="tab" aria-selected="true" aria-controls="tab-activity">Activity</button>
+                    <button class="tab-btn" data-tab="tab-myrecipes" role="tab" aria-selected="false" aria-controls="tab-myrecipes">My Recipes</button>
+                    <button class="tab-btn" data-tab="tab-settings" role="tab" aria-selected="false" aria-controls="tab-settings">Settings</button>
+                </div>
+
+                <!-- Tab: Activity -->
+                <div class="tab-content active" id="tab-activity" role="tabpanel">
+
+                    <!-- Quick Actions Menu -->
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">Quick Actions</h3>
+                        <div class="profile-menu-list">
+                            <a href="favorites.html" class="profile-menu-item">
+                                <span class="profile-menu-icon">❤️</span>
+                                <span class="profile-menu-text">My Favorites</span>
+                                <span class="profile-menu-arrow">→</span>
+                            </a>
+                            <a href="meal-planner.html" class="profile-menu-item">
+                                <span class="profile-menu-icon">📅</span>
+                                <span class="profile-menu-text">Meal Planner</span>
+                                <span class="profile-menu-arrow">→</span>
+                            </a>
+                            <a href="shopping-list.html" class="profile-menu-item">
+                                <span class="profile-menu-icon">🛒</span>
+                                <span class="profile-menu-text">Shopping List</span>
+                                <span class="profile-menu-arrow">→</span>
+                            </a>
+                            <a href="submit-recipe.html" class="profile-menu-item">
+                                <span class="profile-menu-icon">✍️</span>
+                                <span class="profile-menu-text">Submit a Recipe</span>
+                                <span class="profile-menu-arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">Recent Activity</h3>
+                        <div id="recent-activity-list">
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <div style="width:36px;height:36px;border-radius:50%;background:rgba(232,93,44,0.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">❤️</div>
+                                    <div>
+                                        <div class="review-author" style="font-size:0.8125rem;">Saved a recipe</div>
+                                        <div class="review-date">Creamy Garlic Tuscan Shrimp · 2 hours ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <div style="width:36px;height:36px;border-radius:50%;background:rgba(34,197,94,0.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">📅</div>
+                                    <div>
+                                        <div class="review-author" style="font-size:0.8125rem;">Planned a meal</div>
+                                        <div class="review-date">Added Pasta Carbonara to Wednesday dinner · Yesterday</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <div style="width:36px;height:36px;border-radius:50%;background:rgba(59,130,246,0.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">⭐</div>
+                                    <div>
+                                        <div class="review-author" style="font-size:0.8125rem;">Left a review</div>
+                                        <div class="review-date">Classic Margherita Pizza · 5 stars · 3 days ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <div style="width:36px;height:36px;border-radius:50%;background:rgba(244,162,97,0.1);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">🛒</div>
+                                    <div>
+                                        <div class="review-author" style="font-size:0.8125rem;">Shopping trip completed</div>
+                                        <div class="review-date">12 items purchased · Last week</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cooking Stats -->
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">Cooking Stats 📊</h3>
+                        <div class="nutrition-grid">
+                            <div class="nutrition-item">
+                                <span class="nutrition-value" id="stat-cooked">12</span>
+                                <span class="nutrition-label">Recipes Cooked</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="nutrition-value" id="stat-reviews">5</span>
+                                <span class="nutrition-label">Reviews Given</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="nutrition-value" id="stat-streak">3</span>
+                                <span class="nutrition-label">Day Streak 🔥</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="nutrition-value" id="stat-level">🥈</span>
+                                <span class="nutrition-label">Cook Level</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Achievements -->
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">Achievements 🏆</h3>
+                        <div class="flex gap-md flex-wrap">
+                            <div style="text-align:center;padding:var(--space-md);background:var(--white);border-radius:var(--radius-xl);border:1px solid var(--gray-200);min-width:90px;">
+                                <div style="font-size:2rem;margin-bottom:4px;">🍳</div>
+                                <div style="font-size:0.6875rem;font-weight:600;color:var(--gray-700);">First Cook</div>
+                            </div>
+                            <div style="text-align:center;padding:var(--space-md);background:var(--white);border-radius:var(--radius-xl);border:1px solid var(--gray-200);min-width:90px;">
+                                <div style="font-size:2rem;margin-bottom:4px;">⭐</div>
+                                <div style="font-size:0.6875rem;font-weight:600;color:var(--gray-700);">5 Reviews</div>
+                            </div>
+                            <div style="text-align:center;padding:var(--space-md);background:var(--white);border-radius:var(--radius-xl);border:1px solid var(--gray-200);min-width:90px;">
+                                <div style="font-size:2rem;margin-bottom:4px;">❤️</div>
+                                <div style="font-size:0.6875rem;font-weight:600;color:var(--gray-700);">10 Faves</div>
+                            </div>
+                            <div style="text-align:center;padding:var(--space-md);background:var(--white);border-radius:var(--radius-xl);border:1px solid var(--gray-200);min-width:90px;opacity:0.4;">
+                                <div style="font-size:2rem;margin-bottom:4px;">🔥</div>
+                                <div style="font-size:0.6875rem;font-weight:600;color:var(--gray-700);">7-Day Streak</div>
+                            </div>
+                            <div style="text-align:center;padding:var(--space-md);background:var(--white);border-radius:var(--radius-xl);border:1px solid var(--gray-200);min-width:90px;opacity:0.4;">
+                                <div style="font-size:2rem;margin-bottom:4px;">👨‍🍳</div>
+                                <div style="font-size:0.6875rem;font-weight:600;color:var(--gray-700);">Master Chef</div>
+                            </div>
+                            <div style="text-align:center;padding:var(--space-md);background:var(--white);border-radius:var(--radius-xl);border:1px solid var(--gray-200);min-width:90px;opacity:0.4;">
+                                <div style="font-size:2rem;margin-bottom:4px;">🌍</div>
+                                <div style="font-size:0.6875rem;font-weight:600;color:var(--gray-700);">World Traveler</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: My Recipes -->
+                <div class="tab-content" id="tab-myrecipes" role="tabpanel">
+                    <div class="profile-section">
+                        <div class="flex justify-between items-center mb-lg">
+                            <h3 class="profile-section-title mb-0">My Submitted Recipes</h3>
+                            <a href="submit-recipe.html" class="btn btn-primary btn-sm">+ New Recipe</a>
+                        </div>
+
+                        <!-- Recipe List -->
+                        <div class="review-card">
+                            <div class="review-header">
+                                <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=80&h=80&fit=crop" alt="Pasta Carbonara" style="width:56px;height:56px;border-radius:var(--radius-md);object-fit:cover;" width="56" height="56">
+                                <div style="flex:1;">
+                                    <div class="review-author">Homemade Pasta Carbonara</div>
+                                    <div class="review-date">Published · ⭐ 4.9 · 128 views</div>
+                                </div>
+                                <span style="font-size:0.75rem;padding:0.25rem 0.5rem;background:rgba(34,197,94,0.1);color:var(--success);border-radius:var(--radius-md);font-weight:600;">Live</span>
+                            </div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="review-header">
+                                <img src="https://images.unsplash.com/photo-1625944230945-1b7dd3b949ab?w=80&h=80&fit=crop" alt="Tuscan Shrimp" style="width:56px;height:56px;border-radius:var(--radius-md);object-fit:cover;" width="56" height="56">
+                                <div style="flex:1;">
+                                    <div class="review-author">Creamy Garlic Tuscan Shrimp</div>
+                                    <div class="review-date">Published · ⭐ 4.8 · 95 views</div>
+                                </div>
+                                <span style="font-size:0.75rem;padding:0.25rem 0.5rem;background:rgba(34,197,94,0.1);color:var(--success);border-radius:var(--radius-md);font-weight:600;">Live</span>
+                            </div>
+                        </div>
+
+                        <div class="review-card">
+                            <div class="review-header">
+                                <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?w=80&h=80&fit=crop" alt="Smoothie Bowl" style="width:56px;height:56px;border-radius:var(--radius-md);object-fit:cover;" width="56" height="56">
+                                <div style="flex:1;">
+                                    <div class="review-author">Berry Smoothie Bowl</div>
+                                    <div class="review-date">Draft · Last edited 2 days ago</div>
+                                </div>
+                                <span style="font-size:0.75rem;padding:0.25rem 0.5rem;background:rgba(245,158,11,0.1);color:var(--warning);border-radius:var(--radius-md);font-weight:600;">Draft</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tab: Settings -->
+                <div class="tab-content" id="tab-settings" role="tabpanel">
+
+                    <!-- Edit Profile Form -->
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">Edit Profile</h3>
+                        <form id="profile-settings-form" novalidate>
+                            <div class="form-group" style="text-align:center;">
+                                <div style="position:relative;display:inline-block;">
+                                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&h=200&fit=crop&crop=face" alt="Profile avatar" style="width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--primary);" id="settings-avatar" width="96" height="96">
+                                    <button type="button" id="change-avatar-btn" style="position:absolute;bottom:0;right:0;width:32px;height:32px;background:var(--primary);color:white;border:2px solid white;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.875rem;" aria-label="Change avatar">📷</button>
+                                </div>
+                                <input type="file" id="avatar-file-input" accept="image/*" class="sr-only" aria-label="Upload avatar">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settings-name" class="form-label">Display Name</label>
+                                <input type="text" id="settings-name" class="form-input" value="Alex Johnson" aria-required="true">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settings-email" class="form-label">Email</label>
+                                <input type="email" id="settings-email" class="form-input" value="alex.johnson@email.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settings-bio" class="form-label">Bio</label>
+                                <textarea id="settings-bio" class="form-textarea" rows="3">Home cook &amp; food enthusiast 🍳 | Lover of Italian cuisine | Based in New York</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="settings-location" class="form-label">Location</label>
+                                <input type="text" id="settings-location" class="form-input" value="New York, USA" placeholder="e.g., New York, USA">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-block">Save Changes</button>
+                        </form>
+                    </div>
+
+                    <!-- Preferences -->
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">Preferences</h3>
+                        <div class="profile-menu-list">
+                            <div class="profile-menu-item" style="cursor:pointer;" id="pref-units">
+                                <span class="profile-menu-icon">📏</span>
+                                <span class="profile-menu-text">Measurement Units</span>
+                                <span class="profile-menu-arrow" id="units-value" style="font-size:0.8125rem;color:var(--primary);font-weight:600;">Metric</span>
+                            </div>
+                            <div class="profile-menu-item" style="cursor:pointer;" id="pref-dietary">
+                                <span class="profile-menu-icon">🥗</span>
+                                <span class="profile-menu-text">Dietary Preferences</span>
+                                <span class="profile-menu-arrow" style="font-size:0.8125rem;color:var(--gray-500);">None set</span>
+                            </div>
+                            <div class="profile-menu-item" style="cursor:pointer;" id="pref-servings">
+                                <span class="profile-menu-icon">👥</span>
+                                <span class="profile-menu-text">Default Servings</span>
+                                <span class="profile-menu-arrow" id="servings-value" style="font-size:0.8125rem;color:var(--primary);font-weight:600;">4</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notifications -->
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">Notifications</h3>
+                        <div class="profile-menu-list">
+                            <label class="profile-menu-item" style="cursor:pointer;">
+                                <span class="profile-menu-icon">📧</span>
+                                <span class="profile-menu-text">Email Notifications</span>
+                                <input type="checkbox" checked style="width:20px;height:20px;accent-color:var(--primary);" aria-label="Toggle email notifications">
+                            </label>
+                            <label class="profile-menu-item" style="cursor:pointer;">
+                                <span class="profile-menu-icon">📱</span>
+                                <span class="profile-menu-text">Push Notifications</span>
+                                <input type="checkbox" style="width:20px;height:20px;accent-color:var(--primary);" aria-label="Toggle push notifications">
+                            </label>
+                            <label class="profile-menu-item" style="cursor:pointer;">
+                                <span class="profile-menu-icon">📰</span>
+                                <span class="profile-menu-text">Weekly Newsletter</span>
+                                <input type="checkbox" checked style="width:20px;height:20px;accent-color:var(--primary);" aria-label="Toggle weekly newsletter">
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Data & Privacy -->
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">Data & Privacy</h3>
+                        <div class="profile-menu-list">
+                            <button class="profile-menu-item" style="cursor:pointer;width:100;text-align:left;border:none;background:none;font-family:inherit;font-size:inherit;" id="export-data-btn">
+                                <span class="profile-menu-icon">📦</span>
+                                <span class="profile-menu-text">Export My Data</span>
+                                <span class="profile-menu-arrow">→</span>
+                            </button>
+                            <button class="profile-menu-item" style="cursor:pointer;width:100%;text-align:left;border:none;background:none;font-family:inherit;font-size:inherit;" id="clear-data-btn">
+                                <span class="profile-menu-icon">🗑️</span>
+                                <span class="profile-menu-text" style="color:var(--error);">Clear All Data</span>
+                                <span class="profile-menu-arrow">→</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- App Info -->
+                    <div class="profile-section">
+                        <h3 class="profile-section-title">About</h3>
+                        <div class="profile-menu-list">
+                            <a href="about.html" class="profile-menu-item">
+                                <span class="profile-menu-icon">ℹ️</span>
+                                <span class="profile-menu-text">About RecipeHub</span>
+                                <span class="profile-menu-arrow">→</span>
+                            </a>
+                            <div class="profile-menu-item">
+                                <span class="profile-menu-icon">📱</span>
+                                <span class="profile-menu-text">App Version</span>
+                                <span class="profile-menu-arrow" style="font-size:0.8125rem;color:var(--gray-500);">v1.0.0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Logout -->
+                    <button class="btn btn-outline-dark btn-block btn-lg mt-lg" id="logout-btn" style="color:var(--error);border-color:var(--error);">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                        Sign Out
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav" aria-label="Bottom navigation">
+        <a href="../index.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+            <span>Home</span>
+        </a>
+        <a href="search.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span>Search</span>
+        </a>
+        <a href="favorites.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            <span>Favorites</span>
+        </a>
+        <a href="meal-planner.html" class="bottom-nav-item">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Planner</span>
+        </a>
+        <a href="profile.html" class="bottom-nav-item active" aria-current="page">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Profile</span>
+        </a>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">🍳</span>
+                        <span class="logo-text">RecipeHub</span>
+                    </div>
+                    <p class="footer-desc">Your ultimate cooking companion. Discover recipes, plan meals, and cook with confidence.</p>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="recipes.html">Recipes</a></li>
+                        <li><a href="categories.html">Categories</a></li>
+                        <li><a href="meal-planner.html">Meal Planner</a></li>
+                        <li><a href="shopping-list.html">Shopping List</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Community</h3>
+                    <ul class="footer-links">
+                        <li><a href="submit-recipe.html">Submit Recipe</a></li>
+                        <li><a href="profile.html">My Profile</a></li>
+                        <li><a href="favorites.html">My Favorites</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading">Connect</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="Instagram">📸</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="YouTube">🎬</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 RecipeHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+        // Profile page-specific logic
+        (function () {
+
+            // Update stats from localStorage
+            function updateStats() {
+                const favs = JSON.parse(localStorage.getItem('recipehub_favorites') || '[]');
+                const shopping = JSON.parse(localStorage.getItem('recipehub_shopping_list') || '[]');
+                const plan = JSON.parse(localStorage.getItem('recipehub_meal_plan') || '{}');
+
+                const favCountEl = document.getElementById('profile-fav-count');
+                const shoppingCountEl = document.getElementById('profile-shopping-count');
+                const plansCountEl = document.getElementById('profile-plans-count');
+
+                if (favCountEl) favCountEl.textContent = favs.length;
+                if (shoppingCountEl) shoppingCountEl.textContent = shopping.length;
+
+                // Count planned meals
+                let planCount = 0;
+                Object.values(plan).forEach(day => {
+                    planCount += Object.keys(day).length;
+                });
+                if (plansCountEl) plansCountEl.textContent = planCount;
+            }
+
+            updateStats();
+
+            // Edit Profile button — scroll to settings tab
+            const editBtn = document.getElementById('edit-profile-btn');
+            if (editBtn) {
+                editBtn.addEventListener('click', () => {
+                    const settingsTab = document.querySelector('[data-tab="tab-settings"]');
+                    if (settingsTab) {
+                        settingsTab.click();
+                        window.scrollTo({ top: document.querySelector('.tabs-header').offsetTop - 80, behavior: 'smooth' });
+                    }
+                });
+            }
+
+            // Share Profile
+            const shareBtn = document.getElementById('share-profile-btn');
+            if (shareBtn) {
+                shareBtn.addEventListener('click', async () => {
+                    const name = document.getElementById('profile-display-name')?.textContent || 'RecipeHub User';
+                    if (navigator.share) {
+                        try {
+                            await navigator.share({
+                                title: `${name} on RecipeHub`,
+                                text: `Check out ${name}'s cooking profile on RecipeHub!`,
+                                url: window.location.href
+                            });
+                        } catch (e) { /* cancelled */ }
+                    } else {
+                        await navigator.clipboard.writeText(window.location.href);
+                        const toast = document.querySelector('.toast');
+                        if (toast) {
+                            toast.textContent = 'Profile link copied! 📋';
+                            toast.className = 'toast success show';
+                            setTimeout(() => toast.classList.remove('show'), 3000);
+                        }
+                    }
+                });
+            }
+
+            // Avatar change
+            const changeAvatarBtn = document.getElementById('change-avatar-btn');
+            const avatarInput = document.getElementById('avatar-file-input');
+            if (changeAvatarBtn && avatarInput) {
+                changeAvatarBtn.addEventListener('click', () => avatarInput.click());
+
+                avatarInput.addEventListener('change', () => {
+                    const file = avatarInput.files[0];
+                    if (file && file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            const avatarImgs = document.querySelectorAll('#profile-avatar-img, #settings-avatar');
+                            avatarImgs.forEach(img => {
+                                img.src = e.target.result;
+                            });
+                            const toast = document.querySelector('.toast');
+                            if (toast) {
+                                toast.textContent = 'Avatar updated! 📸';
+                                toast.className = 'toast success show';
+                                setTimeout(() => toast.classList.remove('show'), 2500);
+                            }
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            }
+
+            // Profile settings form
+            const settingsForm = document.getElementById('profile-settings-form');
+            if (settingsForm) {
+                settingsForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const name = document.getElementById('settings-name').value.trim();
+                    const bio = document.getElementById('settings-bio').value.trim();
+
+                    if (!name) {
+                        document.getElementById('settings-name').classList.add('error');
+                        const toast = document.querySelector('.toast');
+                        if (toast) {
+                            toast.textContent = 'Name is required';
+                            toast.className = 'toast error show';
+                            setTimeout(() => toast.classList.remove('show'), 3000);
+                        }
+                        return;
+                    }
+
+                    // Update display
+                    const displayName = document.getElementById('profile-display-name');
+                    const displayBio = document.getElementById('profile-display-bio');
+                    if (displayName) displayName.textContent = name;
+                    if (displayBio) displayBio.textContent = bio;
+
+                    // Save to localStorage
+                    try {
+                        localStorage.setItem('recipehub_profile', JSON.stringify({
+                            name,
+                            email: document.getElementById('settings-email').value,
+                            bio,
+                            location: document.getElementById('settings-location').value
+                        }));
+                    } catch (e) { /* storage full */ }
+
+                    const submitBtn = settingsForm.querySelector('button[type="submit"]');
+                    const original = submitBtn.textContent;
+                    submitBtn.textContent = 'Saving...';
+                    submitBtn.disabled = true;
+
+                    setTimeout(() => {
+                        submitBtn.textContent = original;
+                        submitBtn.disabled = false;
+                        const toast = document.querySelector('.toast');
+                        if (toast) {
+                            toast.textContent = 'Profile updated! ✅';
+                            toast.className = 'toast success show';
+                            setTimeout(() => toast.classList.remove('show'), 3000);
+                        }
+                    }, 1000);
+                });
+            }
+
+            // Load saved profile
+            try {
+                const saved = JSON.parse(localStorage.getItem('recipehub_profile'));
+                if (saved) {
+                    if (saved.name) {
+                        const dn = document.getElementById('profile-display-name');
+                        const sn = document.getElementById('settings-name');
+                        if (dn) dn.textContent = saved.name;
+                        if (sn) sn.value = saved.name;
+                    }
+                    if (saved.bio) {
+                        const db = document.getElementById('profile-display-bio');
+                        const sb = document.getElementById('settings-bio');
+                        if (db) db.textContent = saved.bio;
+                        if (sb) sb.value = saved.bio;
+                    }
+                    if (saved.email) {
+                        const se = document.getElementById('settings-email');
+                        if (se) se.value = saved.email;
+                    }
+                    if (saved.location) {
+                        const sl = document.getElementById('settings-location');
+                        if (sl) sl.value = saved.location;
+                    }
+                }
+            } catch (e) { /* no saved profile */ }
+
+            // Units toggle
+            const unitsBtn = document.getElementById('pref-units');
+            const unitsValue = document.getElementById('units-value');
+            if (unitsBtn && unitsValue) {
+                unitsBtn.addEventListener('click', () => {
+                    const current = unitsValue.textContent;
+                    unitsValue.textContent = current === 'Metric' ? 'Imperial' : 'Metric';
+                    const toast = document.querySelector('.toast');
+                    if (toast) {
+                        toast.textContent = `Units set to ${unitsValue.textContent}`;
+                        toast.className = 'toast show';
+                        setTimeout(() => toast.classList.remove('show'), 2000);
+                    }
+                });
+            }
+
+            // Default servings toggle
+            const servingsBtn = document.getElementById('pref-servings');
+            const servingsValue = document.getElementById('servings-value');
+            if (servingsBtn && servingsValue) {
+                servingsBtn.addEventListener('click', () => {
+                    let val = parseInt(servingsValue.textContent);
+                    val = val >= 8 ? 1 : val + 1;
+                    servingsValue.textContent = val;
+                });
+            }
+
+            // Export data
+            const exportBtn = document.getElementById('export-data-btn');
+            if (exportBtn) {
+                exportBtn.addEventListener('click', () => {
+                    const data = {
+                        favorites: JSON.parse(localStorage.getItem('recipehub_favorites') || '[]'),
+                        shopping_list: JSON.parse(localStorage.getItem('recipehub_shopping_list') || '[]'),
+                        meal_plan: JSON.parse(localStorage.getItem('recipehub_meal_plan') || '{}'),
+                        profile: JSON.parse(localStorage.getItem('recipehub_profile') || '{}'),
+                        exported_at: new Date().toISOString()
+                    };
+
+                    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'recipehub-data.json';
+                    a.click();
+                    URL.revokeObjectURL(url);
+
+                    const toast = document.querySelector('.toast');
+                    if (toast) {
+                        toast.textContent = 'Data exported! 📦';
+                        toast.className = 'toast success show';
+                        setTimeout(() => toast.classList.remove('show'), 3000);
+                    }
+                });
+            }
+
+            // Clear all data
+            const clearBtn = document.getElementById('clear-data-btn');
+            if (clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    const confirmed = confirm('This will permanently delete all your saved data including favorites, meal plans, shopping lists, and profile information. Continue?');
+                    if (!confirmed) return;
+
+                    const keys = ['favorites', 'shopping_list', 'meal_plan', 'profile', 'recent_searches', 'draft_recipe'];
+                    keys.forEach(key => localStorage.removeItem('recipehub_' + key));
+
+                    const toast = document.querySelector('.toast');
+                    if (toast) {
+                        toast.textContent = 'All data cleared 🗑️';
+                        toast.className = 'toast show';
+                        setTimeout(() => {
+                            toast.classList.remove('show');
+                            location.reload();
+                        }, 2000);
+                    }
+                });
+            }
+
+            // Logout
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    const toast = document.querySelector('.toast');
+                    if (toast) {
+                        toast.textContent = 'Signed out successfully. See you soon! 👋';
+                        toast.className = 'toast show';
+                        setTimeout(() => {
+                            toast.classList.remove('show');
+                            window.location.href = '../index.html';
+                        }, 2000);
+                    }
+                });
+            }
+
+        })();
+    </script>
+</body>
+</html>
